@@ -1,0 +1,13 @@
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\ExchangeWatcher.exe.config
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\ExchangeWatcher.exe
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\ExchangeWatcher.pdb
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.csprojAssemblyReference.cache
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.MainForm.resources
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.Properties.Resources.resources
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.csproj.GenerateResource.cache
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.csproj.CoreCompileInputs.cache
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.exe
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.pdb
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\Newtonsoft.Json.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\Newtonsoft.Json.xml
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.csproj.CopyComplete
