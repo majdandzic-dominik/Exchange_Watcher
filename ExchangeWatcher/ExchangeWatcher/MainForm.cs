@@ -22,7 +22,7 @@ namespace ExchangeWatcher
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-                txtJSON.Text = Program.GetText();
+                
 
 
         }
