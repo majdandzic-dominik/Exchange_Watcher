@@ -29,26 +29,33 @@ namespace ExchangeWatcher
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtJSON = new System.Windows.Forms.TextBox();
+            this.btnSendEmail = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // txtJSON
+            // btnSendEmail
             // 
-            this.txtJSON.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJSON.Location = new System.Drawing.Point(60, 31);
-            this.txtJSON.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.txtJSON.Multiline = true;
-            this.txtJSON.Name = "txtJSON";
-            this.txtJSON.ReadOnly = true;
-            this.txtJSON.Size = new System.Drawing.Size(415, 408);
-            this.txtJSON.TabIndex = 0;
+            this.btnSendEmail.Location = new System.Drawing.Point(272, 44);
+            this.btnSendEmail.Name = "btnSendEmail";
+            this.btnSendEmail.Size = new System.Drawing.Size(75, 23);
+            this.btnSendEmail.TabIndex = 1;
+            this.btnSendEmail.Text = "Send Email";
+            this.btnSendEmail.UseVisualStyleBackColor = true;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(38, 45);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(168, 20);
+            this.txtEmail.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 519);
-            this.Controls.Add(this.txtJSON);
+            this.ClientSize = new System.Drawing.Size(556, 158);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.btnSendEmail);
             this.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainForm";
@@ -60,8 +67,8 @@ namespace ExchangeWatcher
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtJSON;
+        private System.Windows.Forms.Button btnSendEmail;
+        private System.Windows.Forms.TextBox txtEmail;
     }
 }
 

@@ -39,8 +39,8 @@ namespace ExchangeWatcherUpdater
 
           
             //upload data from list to database  
-            IMongoClient dbClient = new MongoClient("mongodb+srv://docMinike:5zPjAOGRX1Dwu3XK@exchangeratescluster.h4mjo.mongodb.net/docMinike?retryWrites=true&w=majority");
-            IMongoDatabase exchangeRatesDB = dbClient.GetDatabase("TestDB4");
+            IMongoClient dbClient = new MongoClient("mongodb+srv://docMinike:D2bgSWT7M3XGWJwP@exchangeratescluster.mwakl.mongodb.net/ExchangeRates?retryWrites=true&w=majority");
+            IMongoDatabase exchangeRatesDB = dbClient.GetDatabase("ExchangeRates");
             var objectListCollection = exchangeRatesDB.GetCollection<ExchangeRate>("ExchangeRatesList");
             objectListCollection.InsertMany(ExchangeRatesList);
 

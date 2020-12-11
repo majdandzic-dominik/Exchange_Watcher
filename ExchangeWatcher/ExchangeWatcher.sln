@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeWatcher", "ExchangeWatcher\ExchangeWatcher.csproj", "{80F66596-54DF-42BA-9D71-135546632F1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeWatcherUpdater", "ExchangeWatcherUpdater\ExchangeWatcherUpdater.csproj", "{3D56696E-8FA2-47A9-878E-B85499C72B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeWatcherUpdater", "ExchangeWatcherUpdater\ExchangeWatcherUpdater.csproj", "{3D56696E-8FA2-47A9-878E-B85499C72B4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeWatcherEmailSender", "ExchangeWatcherEmailSender\ExchangeWatcherEmailSender.csproj", "{DF22FF83-5D37-47BB-9AE0-07206FEC0A9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3D56696E-8FA2-47A9-878E-B85499C72B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D56696E-8FA2-47A9-878E-B85499C72B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D56696E-8FA2-47A9-878E-B85499C72B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF22FF83-5D37-47BB-9AE0-07206FEC0A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF22FF83-5D37-47BB-9AE0-07206FEC0A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF22FF83-5D37-47BB-9AE0-07206FEC0A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF22FF83-5D37-47BB-9AE0-07206FEC0A9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
