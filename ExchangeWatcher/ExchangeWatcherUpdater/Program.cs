@@ -14,7 +14,7 @@ namespace ExchangeWatcherUpdater
             
             //get json file
             WebClient webClient = new WebClient();
-            String exchangeRatesJSON = webClient.DownloadString("http://api.hnb.hr/tecajn/v2");
+            string exchangeRatesJSON = webClient.DownloadString("http://api.hnb.hr/tecajn/v2");
 
             dynamic dynamicExchangeRates = JsonConvert.DeserializeObject<dynamic>(exchangeRatesJSON);
 
