@@ -34,11 +34,6 @@ namespace ExchangeWatcherUpdater
         public string MiddleRate { get => middleRate; set => middleRate = value; }
         public Guid Id1 { get => Id; set => Id = value; }
 
-        public string GetAllValuesString()
-        {
-            string text = date + " " + country + " " + currency + " " + unit + " " + middleRate;
-
-            return text;
-        }
+        
     }
 }

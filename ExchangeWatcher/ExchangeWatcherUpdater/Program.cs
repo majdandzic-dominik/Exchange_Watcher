@@ -10,8 +10,10 @@ namespace ExchangeWatcherUpdater
     class Program
     {
         static void Main(string[] args)
-        {    
+        {
+
             
+
             //get json file
             WebClient webClient = new WebClient();
             string exchangeRatesJSON = webClient.DownloadString("http://api.hnb.hr/tecajn/v2");
@@ -24,27 +26,41 @@ namespace ExchangeWatcherUpdater
             //store data from json file into list of objects
             List<ExchangeRate> ExchangeRatesList = new List<ExchangeRate>();
 
-            foreach(dynamic dynamicObject in dynamicExchangeRates)
+            string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            int numOfAddedObjects = 0;
+            foreach (dynamic dynamicObject in dynamicExchangeRates)
             {
-                ExchangeRatesList.Add(
-                    new ExchangeRate(
-                        dynamicObject["datum_primjene"].ToString(),
-                        dynamicObject["drzava"].ToString(),
-                        dynamicObject["valuta"].ToString(),
-                        dynamicObject["jedinica"].ToString(),
-                        dynamicObject["srednji_tecaj"].ToString()
-                        )
-                );
+                if(!string.Equals(today, dynamicObject["datum_primjene"].ToString()))
+                {
+                    ExchangeRatesList.Add(
+                        new ExchangeRate(
+                            dynamicObject["datum_primjene"].ToString(),
+                            dynamicObject["drzava"].ToString(),
+                            dynamicObject["valuta"].ToString(),
+                            dynamicObject["jedinica"].ToString(),
+                            dynamicObject["srednji_tecaj"].ToString()
+                            )
+                    );
+                    numOfAddedObjects++;
+                }
             }
 
-          
-            //upload data from list to database  
-            IMongoClient dbClient = new MongoClient("mongodb+srv://docMinike:D2bgSWT7M3XGWJwP@exchangeratescluster.mwakl.mongodb.net/ExchangeRates?retryWrites=true&w=majority");
-            IMongoDatabase exchangeRatesDB = dbClient.GetDatabase("ExchangeRates");
-            var objectListCollection = exchangeRatesDB.GetCollection<ExchangeRate>("ExchangeRatesList");
-            objectListCollection.InsertMany(ExchangeRatesList);
 
-                       
+            //upload data from list to database 
+            if(numOfAddedObjects != 0)
+            {
+                string collection = "ExchangeRates";
+                string table = "ExchangeRatesList";
+                MongoCRUD exchangeRatesDB = new MongoCRUD(collection);
+                exchangeRatesDB.InsertRecordList<ExchangeRate>(table, ExchangeRatesList);
+            }
+             
+           
+            
+
+           
+
+
         }
 
     }

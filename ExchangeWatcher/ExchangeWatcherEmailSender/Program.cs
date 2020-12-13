@@ -23,18 +23,19 @@ namespace ExchangeWatcherEmailSender
 
 
 
-            MongoCRUD db = new MongoCRUD("ExchangeRates");
+            MongoCRUD exchangeRatesDB = new MongoCRUD("ExchangeRates");
 
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
             string yesterday = DateTime.UtcNow.AddDays(-1).ToString("yyyy-MM-dd");
 
-            var percentageTodayList = db.LoadRecordByDate<ExchangeRate>("ExchangeRatesList", today);
-            var percentageYesterdayList = db.LoadRecordByDate<ExchangeRate>("ExchangeRatesList", yesterday);
+            var percentageTodayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>("ExchangeRatesList", today);
+            var percentageYesterdayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>("ExchangeRatesList", yesterday);
             List<double> percentageChangeList = new List<double>();
 
             double percentageToday;
             double percentageYesterday;
 
+            
             int i = 0;
             foreach (var v in percentageTodayList)
             {
@@ -49,9 +50,30 @@ namespace ExchangeWatcherEmailSender
                 Console.WriteLine(v.ToString());
             }
 
-           
 
 
+            List<string> currencyList = new List<string>();
+            List<double> newpercentageChangeList = new List<double>();
+            foreach (var v1 in percentageTodayList)
+            {
+                currencyList.Add(v1.Currency.ToString());
+                foreach(var v2 in percentageYesterdayList)
+                {
+                    if(v1.Currency.ToString() == v2.Currency.ToString())
+                    {
+                        percentageToday = Convert.ToDouble(v1.MiddleRate);
+                        percentageYesterday = Convert.ToDouble(v2.MiddleRate);
+                        newpercentageChangeList.Add(Math.Abs(((percentageToday - percentageYesterday) / percentageYesterday)*100));
+                    }
+                }
+            }
+
+            i = 0;
+            foreach (var v in newpercentageChangeList)
+            {
+                Console.WriteLine(currencyList[i] + " " + v.ToString());
+                i++;
+            }
 
 
 
