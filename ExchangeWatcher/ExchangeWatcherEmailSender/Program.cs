@@ -11,132 +11,109 @@ namespace ExchangeWatcherEmailSender
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Email: ");
-            //string email = Console.ReadLine();
-            //string subjectText = "FIller subject";
-            //string messageText = "FIller message";
+            Console.WriteLine("Email: ");
+            string email = Console.ReadLine();
+            string subjectText = "FIller subject";
+            string messageText = "FIller message";
 
-            //Console.WriteLine("Currency: ");
-            //string currency = Console.ReadLine();
-            //Console.WriteLine("Percentage: ");
-            //string percentage = Console.ReadLine();
+            Console.WriteLine("Currency: ");
+            string currency = Console.ReadLine();
+            Console.WriteLine("Percentage: ");
+            string percentage = Console.ReadLine();
 
 
+            string collection = "ExchangeRates";
+            string table = "ExchangeRatesList";
 
-            MongoCRUD exchangeRatesDB = new MongoCRUD("ExchangeRates");
+            MongoCRUD exchangeRatesDB = new MongoCRUD(collection);
 
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
             string yesterday = DateTime.UtcNow.AddDays(-1).ToString("yyyy-MM-dd");
 
-            var percentageTodayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>("ExchangeRatesList", today);
-            var percentageYesterdayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>("ExchangeRatesList", yesterday);
+            var percentageTodayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(table, today);
+            var percentageYesterdayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(table, yesterday);
             List<double> percentageChangeList = new List<double>();
-
-            double percentageToday;
-            double percentageYesterday;
-
+      
             
-            int i = 0;
-            foreach (var v in percentageTodayList)
-            {
-                percentageToday = Convert.ToDouble(v.MiddleRate);
-                percentageYesterday = Convert.ToDouble(percentageYesterdayList[i].MiddleRate);
-                percentageChangeList.Add(Math.Abs(((percentageToday - percentageYesterday) / percentageYesterday)));
-                i++;
-            }
-
-            foreach(var v in percentageChangeList)
-            {
-                Console.WriteLine(v.ToString());
-            }
-
-
-
-            List<string> currencyList = new List<string>();
-            List<double> newpercentageChangeList = new List<double>();
-            foreach (var v1 in percentageTodayList)
-            {
-                currencyList.Add(v1.Currency.ToString());
-                foreach(var v2 in percentageYesterdayList)
-                {
-                    if(v1.Currency.ToString() == v2.Currency.ToString())
-                    {
-                        percentageToday = Convert.ToDouble(v1.MiddleRate);
-                        percentageYesterday = Convert.ToDouble(v2.MiddleRate);
-                        newpercentageChangeList.Add(Math.Abs(((percentageToday - percentageYesterday) / percentageYesterday)*100));
-                    }
-                }
-            }
-
-            i = 0;
-            foreach (var v in newpercentageChangeList)
-            {
-                Console.WriteLine(currencyList[i] + " " + v.ToString());
-                i++;
-            }
+            //store percentage change of middle rate by currency
+            var listTest = percentageTodayList.Join(percentageYesterdayList,
+                                                    arg => arg.Currency, arg => arg.Currency, (first, second) =>
+                                                    new { Currency = first.Currency, 
+                                                        MRChange = Math.Abs(((Convert.ToDouble(first.MiddleRate) - Convert.ToDouble(second.MiddleRate)) / Convert.ToDouble(second.MiddleRate)) * 100) });
 
 
 
 
 
 
+            //DOESN'T WORK-------------------------------
+            //List<MiddleRatesByCurrency> listMR = new List<MiddleRatesByCurrency>();
+            //var listMR2 = exchangeRatesDB.LoadMiddleRatesByCurrencyAndDate<MiddleRatesByCurrency>(table, today, yesterday);
+            //Console.WriteLine(listMR2.Count.ToString());
+            //i = 0;
+            //foreach (var v in listMR2)
+            //{
+            //    listMR.Add(new MiddleRatesByCurrency(v.Currency, v.MrToday, v.MrYesterday));
+            //    listMR[i].PrintString();
+            //    i++;
+            //}
 
 
 
 
 
             //sending the mail
-            //SmtpClient client = new SmtpClient()
-            //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network,
-            //    UseDefaultCredentials = false,
-            //    Credentials = new NetworkCredential()
-            //    {
-            //        UserName = "exchange.watcher.updates@gmail.com",
-            //        Password = "kpjsklytglnjsolg"
+            SmtpClient client = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential()
+                {
+                    UserName = "exchange.watcher.updates@gmail.com",
+                    Password = "kpjsklytglnjsolg"
 
-            //    }
-            //};
+                }
+            };
 
-            //MailAddress fromEmail = new MailAddress("exchange.watcher.updates@gmail.com", "Exchange Watcher Team");
-            //MailAddress toEmail = new MailAddress(email, "filler name");
+            MailAddress fromEmail = new MailAddress("exchange.watcher.updates@gmail.com", "Exchange Watcher Team");
+            MailAddress toEmail = new MailAddress(email, "filler name");
 
-            //MailMessage message = new MailMessage()
-            //{
-            //    From = fromEmail,
-            //    Subject = subjectText,
-            //    Body = messageText
-            //};
-            //message.To.Add(toEmail);
+            MailMessage message = new MailMessage()
+            {
+                From = fromEmail,
+                Subject = subjectText,
+                Body = messageText
+            };
+            message.To.Add(toEmail);
 
-            //try
-            //{
-            //    client.Send(message);
-            //    Console.WriteLine("Mail sent successfully");
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("Error:\n" + e.Message);
-            //}
+            try
+            {
+                client.Send(message);
+                Console.WriteLine("Mail sent successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error:\n" + e.Message);
+            }
 
-            //DOESNT WORK -----------------------------------------------------------------------------
+            //DOESN'T WORK -----------------------------------------------------------------------------
             //client.SendCompleted += Client_SendCompleted;
             //client.SendMailAsync(message);
 
         }
 
-        //private static void Client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        //{
-        //    if(e.Error != null)
-        //    {
-        //        Console.WriteLine("Error \n" + e.Error.Message);
-        //        return;
-        //    }
-        //    Console.WriteLine("Mail sent successfuly");
-        //}
+        private static void Client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                Console.WriteLine("Error \n" + e.Error.Message);
+                return;
+            }
+            Console.WriteLine("Mail sent successfuly");
+        }
 
 
 

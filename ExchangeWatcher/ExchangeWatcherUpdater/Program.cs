@@ -20,18 +20,21 @@ namespace ExchangeWatcherUpdater
 
             dynamic dynamicExchangeRates = JsonConvert.DeserializeObject<dynamic>(exchangeRatesJSON);
 
-            
-            
-            
+
+            //connect to database
+            string collection = "ExchangeRates";
+            string table = "ExchangeRatesList";
+            MongoCRUD exchangeRatesDB = new MongoCRUD(collection);
+
+
+
             //store data from json file into list of objects
             List<ExchangeRate> ExchangeRatesList = new List<ExchangeRate>();
 
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            int numOfAddedObjects = 0;
             foreach (dynamic dynamicObject in dynamicExchangeRates)
             {
-                if(!string.Equals(today, dynamicObject["datum_primjene"].ToString()))
-                {
+
                     ExchangeRatesList.Add(
                         new ExchangeRate(
                             dynamicObject["datum_primjene"].ToString(),
@@ -41,21 +44,13 @@ namespace ExchangeWatcherUpdater
                             dynamicObject["srednji_tecaj"].ToString()
                             )
                     );
-                    numOfAddedObjects++;
-                }
             }
 
 
-            //upload data from list to database 
-            if(numOfAddedObjects != 0)
-            {
-                string collection = "ExchangeRates";
-                string table = "ExchangeRatesList";
-                MongoCRUD exchangeRatesDB = new MongoCRUD(collection);
-                exchangeRatesDB.InsertRecordList<ExchangeRate>(table, ExchangeRatesList);
-            }
-             
            
+            exchangeRatesDB.InsertRecordListByDate<ExchangeRate>(table, ExchangeRatesList, today);
+
+
             
 
            

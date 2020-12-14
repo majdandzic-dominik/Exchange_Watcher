@@ -15,11 +15,17 @@ namespace ExchangeWatcherUpdater
             db = client.GetDatabase(database);
         }
 
-        public void InsertRecordList<T>(string table, List<T> records)
+        public void InsertRecordListByDate<T>(string table, List<T> records, string today)
         {
             var collection = db.GetCollection<T>(table);
-            collection.InsertMany(records);
 
+            var filter = Builders<T>.Filter.Eq("Date", today);
+
+            if(collection.Find(filter).ToList().Count == 0)
+            { 
+                collection.InsertMany(records);
+            }
+            
         }     
 
     }
