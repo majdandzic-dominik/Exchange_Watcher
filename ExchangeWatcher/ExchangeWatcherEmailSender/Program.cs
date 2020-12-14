@@ -63,41 +63,66 @@ namespace ExchangeWatcherEmailSender
 
 
             //sending the mail
-            SmtpClient client = new SmtpClient()
+            //SmtpClient client = new SmtpClient()
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential()
+            //    {
+            //        UserName = "exchange.watcher.updates@gmail.com",
+            //        Password = "kpjsklytglnjsolg"
+
+            //    }
+            //};
+
+            //MailAddress fromEmail = new MailAddress("exchange.watcher.updates@gmail.com", "Exchange Watcher Team");
+            //MailAddress toEmail = new MailAddress(email, "filler name");
+
+            //MailMessage message = new MailMessage()
+            //{
+            //    From = fromEmail,
+            //    Subject = subjectText,
+            //    Body = messageText
+            //};
+            //message.To.Add(toEmail);
+
+            //try
+            //{
+            //    client.Send(message);
+            //    Console.WriteLine("Mail sent successfully");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Error:\n" + e.Message);
+            //}
+
+
+            EmailSender emailSender = new EmailSender();
+            emailSender.InitializeSmtpClient();
+            emailSender.ChangeReceiver(email, "filler username");
+            emailSender.AddWatchedCurrency(currency, Convert.ToDouble(percentage)); //percentage is the change the user want's to track, not the actual change
+            emailSender.AddWatchedCurrency("AUD", 0);
+            emailSender.AddWatchedCurrency("CAD", 3.4);
+            emailSender.AddWatchedCurrency("JPY", 0);
+            emailSender.SendEmail();
+
+
+
+            for(int i = 0; i < emailSender.GetNumOfWatcherCurrencies(); i++)
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential()
-                {
-                    UserName = "exchange.watcher.updates@gmail.com",
-                    Password = "kpjsklytglnjsolg"
 
-                }
-            };
-
-            MailAddress fromEmail = new MailAddress("exchange.watcher.updates@gmail.com", "Exchange Watcher Team");
-            MailAddress toEmail = new MailAddress(email, "filler name");
-
-            MailMessage message = new MailMessage()
-            {
-                From = fromEmail,
-                Subject = subjectText,
-                Body = messageText
-            };
-            message.To.Add(toEmail);
-
-            try
-            {
-                client.Send(message);
-                Console.WriteLine("Mail sent successfully");
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error:\n" + e.Message);
-            }
+
+
+
+
+
+
+
+
 
             //DOESN'T WORK -----------------------------------------------------------------------------
             //client.SendCompleted += Client_SendCompleted;
@@ -115,6 +140,8 @@ namespace ExchangeWatcherEmailSender
             Console.WriteLine("Mail sent successfuly");
         }
 
+
+        
 
 
 
