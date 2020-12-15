@@ -13,8 +13,6 @@ namespace ExchangeWatcherEmailSender
         {
             Console.WriteLine("Email: ");
             string email = Console.ReadLine();
-            string subjectText = "FIller subject";
-            string messageText = "FIller message";
 
             Console.WriteLine("Currency: ");
             string currency = Console.ReadLine();
@@ -36,7 +34,7 @@ namespace ExchangeWatcherEmailSender
       
             
             //store percentage change of middle rate by currency
-            var listTest = percentageTodayList.Join(percentageYesterdayList,
+            var mrChangeList = percentageTodayList.Join(percentageYesterdayList,
                                                     arg => arg.Currency, arg => arg.Currency, (first, second) =>
                                                     new { Currency = first.Currency, 
                                                         MRChange = Math.Abs(((Convert.ToDouble(first.MiddleRate) - Convert.ToDouble(second.MiddleRate)) / Convert.ToDouble(second.MiddleRate)) * 100) });
@@ -104,19 +102,34 @@ namespace ExchangeWatcherEmailSender
             emailSender.InitializeSmtpClient();
             emailSender.ChangeReceiver(email, "filler username");
             emailSender.AddWatchedCurrency(currency, Convert.ToDouble(percentage)); //percentage is the change the user want's to track, not the actual change
-            emailSender.AddWatchedCurrency("AUD", 0);
+            //test values
+            emailSender.AddWatchedCurrency("AUD", 1.2);
             emailSender.AddWatchedCurrency("CAD", 3.4);
-            emailSender.AddWatchedCurrency("JPY", 0);
-            emailSender.SendEmail();
+            emailSender.AddWatchedCurrency("JPY", 0.002);
 
 
 
-            for(int i = 0; i < emailSender.GetNumOfWatcherCurrencies(); i++)
+
+            double mrChangeForWatchedCurrency;
+            for (int i = 0; i < emailSender.GetNumOfWatcherCurrencies(); i++)
             {
-
+                mrChangeForWatchedCurrency = mrChangeList.First(cur => cur.Currency == emailSender.GetWatchedCurrencyAtIndex(i)).MRChange;
+                if (mrChangeForWatchedCurrency < emailSender.GetPercentChangeAtIndex(i))
+                {
+                    emailSender.RemoveWatchedCurrency(i);
+                    if (emailSender.GetNumOfWatcherCurrencies() > 1)
+                    {
+                        i--;
+                    }
+                }
+                else
+                {
+                    emailSender.SetPercentChangeAtIndex(i, mrChangeForWatchedCurrency);
+                }
+                
             }
 
-
+            emailSender.SendEmail();
 
 
 
@@ -130,15 +143,15 @@ namespace ExchangeWatcherEmailSender
 
         }
 
-        private static void Client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                Console.WriteLine("Error \n" + e.Error.Message);
-                return;
-            }
-            Console.WriteLine("Mail sent successfuly");
-        }
+        //private static void Client_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        //{
+        //    if (e.Error != null)
+        //    {
+        //        Console.WriteLine("Error \n" + e.Error.Message);
+        //        return;
+        //    }
+        //    Console.WriteLine("Mail sent successfuly");
+        //}
 
 
         
