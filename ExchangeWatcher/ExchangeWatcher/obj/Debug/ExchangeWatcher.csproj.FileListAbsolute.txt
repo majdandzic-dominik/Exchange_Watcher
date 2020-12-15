@@ -28,3 +28,4 @@ F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\MongoDB.
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\MongoDB.Driver.Core.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Buffers.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.LoginForm.resources
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.SignUpForm.resources

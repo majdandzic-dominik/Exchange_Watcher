@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ExchangeWatcher
 {
-    public partial class LogInForm : Form
+    public partial class SignUpForm : Form
     {
-        public LogInForm()
+        public SignUpForm()
         {
             InitializeComponent();
         }
@@ -21,5 +21,7 @@ namespace ExchangeWatcher
         {
             this.Hide();
         }
+
+
     }
 }
