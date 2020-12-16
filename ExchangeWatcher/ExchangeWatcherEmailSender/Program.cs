@@ -20,16 +20,16 @@ namespace ExchangeWatcherEmailSender
             string percentage = Console.ReadLine();
 
 
-            string collection = "ExchangeRates";
-            string table = "ExchangeRatesList";
+            string database = "ExchangeRates";
+            string collection = "ExchangeRatesList";
 
-            MongoCRUD exchangeRatesDB = new MongoCRUD(collection);
+            MongoCRUD exchangeRatesDB = new MongoCRUD(database);
 
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
             string yesterday = DateTime.UtcNow.AddDays(-1).ToString("yyyy-MM-dd");
 
-            var percentageTodayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(table, today);
-            var percentageYesterdayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(table, yesterday);
+            var percentageTodayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(collection, today);
+            var percentageYesterdayList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(collection, yesterday);
             List<double> percentageChangeList = new List<double>();
       
             

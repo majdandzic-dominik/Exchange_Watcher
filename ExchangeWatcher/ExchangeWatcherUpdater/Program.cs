@@ -22,9 +22,9 @@ namespace ExchangeWatcherUpdater
 
 
             //connect to database
-            string collection = "ExchangeRates";
-            string table = "ExchangeRatesList";
-            MongoCRUD exchangeRatesDB = new MongoCRUD(collection);
+            string database = "ExchangeRates";
+            string collection = "ExchangeRatesList";
+            MongoCRUD exchangeRatesDB = new MongoCRUD(database);
 
 
 
@@ -48,7 +48,7 @@ namespace ExchangeWatcherUpdater
 
 
            
-            exchangeRatesDB.InsertRecordListByDate<ExchangeRate>(table, ExchangeRatesList, today);
+            exchangeRatesDB.InsertRecordListByDate<ExchangeRate>(collection, ExchangeRatesList, today);
 
 
             

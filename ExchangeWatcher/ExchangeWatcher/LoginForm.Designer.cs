@@ -91,8 +91,9 @@ namespace ExchangeWatcher
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtUserName.Location = new System.Drawing.Point(40, 160);
+            this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(324, 19);
+            this.txtUserName.Size = new System.Drawing.Size(324, 20);
             this.txtUserName.TabIndex = 1;
             // 
             // panel3
@@ -215,7 +216,7 @@ namespace ExchangeWatcher
             this.Controls.Add(this.panelLeft);
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LogInForm";
+            this.Text = "Log In";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.panelRight.PerformLayout();

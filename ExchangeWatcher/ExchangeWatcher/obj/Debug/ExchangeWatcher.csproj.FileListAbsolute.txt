@@ -29,3 +29,11 @@ F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\MongoDB.
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Buffers.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.LoginForm.resources
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.SignUpForm.resources
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\BCrypt.Net-Next.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Memory.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Numerics.Vectors.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\BCrypt.Net-Next.xml
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Memory.xml
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Numerics.Vectors.xml
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
