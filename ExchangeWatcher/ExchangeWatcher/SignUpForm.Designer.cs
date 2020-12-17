@@ -34,6 +34,7 @@ namespace ExchangeWatcher
             this.lbllAppName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
             this.btnSignUp = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@ namespace ExchangeWatcher
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblSignUp = new System.Windows.Forms.Label();
-            this.lblErrorMsg = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
@@ -114,6 +114,18 @@ namespace ExchangeWatcher
             this.panelRight.Size = new System.Drawing.Size(410, 498);
             this.panelRight.TabIndex = 1;
             // 
+            // lblErrorMsg
+            // 
+            this.lblErrorMsg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMsg.Location = new System.Drawing.Point(40, 377);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(324, 17);
+            this.lblErrorMsg.TabIndex = 7;
+            this.lblErrorMsg.Text = "Error";
+            this.lblErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblErrorMsg.Visible = false;
+            // 
             // lblExit
             // 
             this.lblExit.AutoSize = true;
@@ -146,6 +158,7 @@ namespace ExchangeWatcher
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtEmail.Location = new System.Drawing.Point(40, 100);
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(324, 20);
@@ -157,6 +170,7 @@ namespace ExchangeWatcher
             this.txtConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtConfirmPassword.Location = new System.Drawing.Point(40, 328);
+            this.txtConfirmPassword.MaxLength = 30;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(324, 19);
             this.txtConfirmPassword.TabIndex = 3;
@@ -168,6 +182,7 @@ namespace ExchangeWatcher
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtPassword.Location = new System.Drawing.Point(40, 252);
+            this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(324, 19);
             this.txtPassword.TabIndex = 2;
@@ -179,6 +194,7 @@ namespace ExchangeWatcher
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtUserName.Location = new System.Drawing.Point(40, 176);
+            this.txtUserName.MaxLength = 20;
             this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(324, 20);
@@ -281,18 +297,6 @@ namespace ExchangeWatcher
             this.lblSignUp.Size = new System.Drawing.Size(110, 33);
             this.lblSignUp.TabIndex = 2;
             this.lblSignUp.Text = "Sign Up";
-            // 
-            // lblErrorMsg
-            // 
-            this.lblErrorMsg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMsg.Location = new System.Drawing.Point(40, 377);
-            this.lblErrorMsg.Name = "lblErrorMsg";
-            this.lblErrorMsg.Size = new System.Drawing.Size(324, 17);
-            this.lblErrorMsg.TabIndex = 7;
-            this.lblErrorMsg.Text = "Error";
-            this.lblErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblErrorMsg.Visible = false;
             // 
             // SignUpForm
             // 

@@ -40,16 +40,32 @@ namespace ExchangeWatcher
         {
             if (IsValidEmail(txtEmail.Text) && txtUserName.Text != null && txtPassword.Text != null && txtConfirmPassword.Text != null)
             {
-                if(txtPassword.Text == txtConfirmPassword.Text)
+                if(txtPassword.Text.Length > 7 && txtUserName.Text.Length > 3)
                 {
-                    User user = new User(txtUserName.Text, txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
-                    lblErrorMsg.Text = userDB.InsertUserIfNotExist<User>(userCollection, user, user.UserName, user.Email);
-                    lblErrorMsg.Visible = true;
+                    if(txtPassword.Text == txtConfirmPassword.Text)
+                    {
+                        User user = new User(txtUserName.Text, txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
+                        lblErrorMsg.Text = userDB.InsertUserIfNotExist<User>(userCollection, user, user.UserName, user.Email);
+                        lblErrorMsg.Visible = true;
+                    }
+                    else
+                    {
+                        lblErrorMsg.Text = "The passwords do not match";
+                        lblErrorMsg.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblErrorMsg.Text = "The passwords do not match";
-                    lblErrorMsg.Visible = true;
+                    if(txtUserName.Text.Length <= 3)
+                    {
+                        lblErrorMsg.Text = "User name has to be atleast 4 characters. Password needs to be atlest 8 characters";
+                        lblErrorMsg.Visible = true;
+                    }
+                    else
+                    {
+                        lblErrorMsg.Text = "Password needs to be atlest 8 characters";
+                        lblErrorMsg.Visible = true;
+                    }
                 }
             }
             else

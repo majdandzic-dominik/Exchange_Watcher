@@ -19,30 +19,43 @@ namespace ExchangeWatcher
 
         public string InsertUserIfNotExist<T>(string table, T user, string userName, string email)
         {
-            var collection = db.GetCollection<T>(table);
+            var collection = db.GetCollection<T>(table);           
 
-            var filterUserName = Builders<T>.Filter.Eq("UserName", userName);
-            var filterEmail = Builders<T>.Filter.Eq("Email", email);
-
-            if (collection.Find(filterUserName).ToList().Count == 0 && collection.Find(filterEmail).ToList().Count == 0)
+            if (GetNumOfUsers<T>(table, userName) == 0 && GetNumOfEmails<T>(table, email) == 0)
             {
                 collection.InsertOneAsync(user);
                 return "Sign up successfull.";
             }
 
-            else if (collection.Find(filterUserName).ToList().Count != 0 && collection.Find(filterEmail).ToList().Count == 0)
+            else if (GetNumOfUsers<T>(table, userName) != 0 && GetNumOfEmails<T>(table, email) == 0)
             {
                 return "User name already in use";
             }
 
-            else if (collection.Find(filterUserName).ToList().Count == 0 && collection.Find(filterEmail).ToList().Count != 0)
+            else if (GetNumOfUsers<T>(table, userName) == 0 && GetNumOfEmails<T>(table, email) != 0)
             {
                 return "Email already in use";
             }
 
             return "Both user name and email are already in use";
 
-
         }
+
+        private int GetNumOfUsers<T>(string table, string userName)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filterUserName = Builders<T>.Filter.Eq("UserName", userName);
+
+            return collection.Find(filterUserName).ToList().Count;
+        }
+
+        private int GetNumOfEmails<T>(string table, string email)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filterEmail = Builders<T>.Filter.Eq("Email", email);
+
+            return collection.Find(filterEmail).ToList().Count;
+        }
+
     }
 }
