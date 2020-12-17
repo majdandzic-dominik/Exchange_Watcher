@@ -23,16 +23,16 @@ namespace ExchangeWatcher
         {
             InitializeComponent();
         }
+        private void SignUpForm_Load(object sender, EventArgs e)
+        {
+            userDB = new MongoCRUD(userDatabase);
+        }
 
         private void lblExit_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
 
-        private void SignUpForm_Load(object sender, EventArgs e)
-        {
-            userDB = new MongoCRUD(userDatabase);
-        }
 
         
 
@@ -40,7 +40,7 @@ namespace ExchangeWatcher
         {
             if (IsValidEmail(txtEmail.Text) && txtUserName.Text != null && txtPassword.Text != null && txtConfirmPassword.Text != null)
             {
-                if(txtPassword.Text.Length > 7 && txtUserName.Text.Length > 3)
+                if(txtPassword.TextLength > 7 && txtUserName.TextLength > 3)
                 {
                     if(txtPassword.Text == txtConfirmPassword.Text)
                     {
@@ -56,7 +56,7 @@ namespace ExchangeWatcher
                 }
                 else
                 {
-                    if(txtUserName.Text.Length <= 3)
+                    if(txtUserName.TextLength <= 3)
                     {
                         lblErrorMsg.Text = "User name has to be atleast 4 characters. Password needs to be atlest 8 characters";
                         lblErrorMsg.Visible = true;

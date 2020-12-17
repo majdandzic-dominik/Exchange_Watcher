@@ -41,7 +41,7 @@ namespace ExchangeWatcher
 
         }
 
-        private int GetNumOfUsers<T>(string table, string userName)
+        public int GetNumOfUsers<T>(string table, string userName)
         {
             var collection = db.GetCollection<T>(table);
             var filterUserName = Builders<T>.Filter.Eq("UserName", userName);
@@ -56,6 +56,16 @@ namespace ExchangeWatcher
 
             return collection.Find(filterEmail).ToList().Count;
         }
+
+        public string GetUserPasswordHash(string table, string userName)
+        {
+            var collection = db.GetCollection<User>(table);
+            var filter = Builders<User>.Filter.Eq("UserName", userName);
+
+            return collection.Find(filter).ToList()[0].Password;
+        }
+        
+
 
     }
 }

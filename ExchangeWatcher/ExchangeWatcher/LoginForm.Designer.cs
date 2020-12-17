@@ -44,6 +44,7 @@ namespace ExchangeWatcher
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -73,6 +74,7 @@ namespace ExchangeWatcher
             this.btnLogIn.TabIndex = 4;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = false;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // txtPassword
             // 
@@ -180,6 +182,7 @@ namespace ExchangeWatcher
             // panelRight
             // 
             this.panelRight.BackColor = System.Drawing.Color.White;
+            this.panelRight.Controls.Add(this.lblErrorMsg);
             this.panelRight.Controls.Add(this.lblExit);
             this.panelRight.Controls.Add(this.btnLogIn);
             this.panelRight.Controls.Add(this.txtPassword);
@@ -207,6 +210,18 @@ namespace ExchangeWatcher
             this.panelLeft.Size = new System.Drawing.Size(274, 498);
             this.panelLeft.TabIndex = 2;
             // 
+            // lblErrorMsg
+            // 
+            this.lblErrorMsg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMsg.Location = new System.Drawing.Point(37, 312);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(327, 17);
+            this.lblErrorMsg.TabIndex = 8;
+            this.lblErrorMsg.Text = "Error";
+            this.lblErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblErrorMsg.Visible = false;
+            // 
             // LogInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +232,7 @@ namespace ExchangeWatcher
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log In";
+            this.Load += new System.EventHandler(this.LogInForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.panelRight.PerformLayout();
@@ -242,5 +258,6 @@ namespace ExchangeWatcher
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.Panel panelLeft;
+        private System.Windows.Forms.Label lblErrorMsg;
     }
 }

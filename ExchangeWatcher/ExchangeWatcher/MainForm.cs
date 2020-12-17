@@ -14,17 +14,23 @@ namespace ExchangeWatcher
 {
     public partial class MainForm : Form
     {
+        private string loggedInUser = "";
         public MainForm()
         {
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
+        {        
+
+
+        }
+
+
+        public void SetUserName(string userName)
         {
-
-                
-
-
+            loggedInUser = userName;
+            lblUserName.Text = userName;
         }
     }
 }

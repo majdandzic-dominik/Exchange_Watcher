@@ -11,15 +11,21 @@ namespace ExchangeWatcher
     {
         [BsonId]
         private Guid Id;
-        string userName;
-        string email;
-        string password;
+        private string userName;
+        private string email;
+        private string password;
 
         public User(string userName, string email, string password)
         {
             this.UserName = userName;
             this.Email = email;
             this.Password = password;
+        }
+        public User()
+        {
+            UserName = "";
+            Email = "";
+            Password = "";
         }
 
         public string UserName { get => userName; set => userName = value; }
