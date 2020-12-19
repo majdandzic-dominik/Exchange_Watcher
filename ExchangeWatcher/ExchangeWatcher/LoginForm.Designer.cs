@@ -43,8 +43,8 @@ namespace ExchangeWatcher
             this.lbllAppName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
-            this.panelLeft = new System.Windows.Forms.Panel();
             this.lblErrorMsg = new System.Windows.Forms.Label();
+            this.panelLeft = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -82,6 +82,7 @@ namespace ExchangeWatcher
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtPassword.Location = new System.Drawing.Point(40, 254);
+            this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(324, 19);
             this.txtPassword.TabIndex = 2;
@@ -93,6 +94,7 @@ namespace ExchangeWatcher
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
             this.txtUserName.Location = new System.Drawing.Point(40, 160);
+            this.txtUserName.MaxLength = 20;
             this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(324, 20);
@@ -124,6 +126,7 @@ namespace ExchangeWatcher
             this.lblSignUp.Size = new System.Drawing.Size(223, 17);
             this.lblSignUp.TabIndex = 5;
             this.lblSignUp.Text = "Don\'t have an account? Sign up.";
+            this.lblSignUp.Click += new System.EventHandler(this.lblSignUp_Click);
             // 
             // lblPassword
             // 
@@ -199,17 +202,6 @@ namespace ExchangeWatcher
             this.panelRight.Size = new System.Drawing.Size(410, 498);
             this.panelRight.TabIndex = 3;
             // 
-            // panelLeft
-            // 
-            this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.panelLeft.Controls.Add(this.lbllAppName);
-            this.panelLeft.Controls.Add(this.pictureBox1);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(274, 498);
-            this.panelLeft.TabIndex = 2;
-            // 
             // lblErrorMsg
             // 
             this.lblErrorMsg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -222,6 +214,17 @@ namespace ExchangeWatcher
             this.lblErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblErrorMsg.Visible = false;
             // 
+            // panelLeft
+            // 
+            this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.panelLeft.Controls.Add(this.lbllAppName);
+            this.panelLeft.Controls.Add(this.pictureBox1);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(274, 498);
+            this.panelLeft.TabIndex = 2;
+            // 
             // LogInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,9 +232,13 @@ namespace ExchangeWatcher
             this.ClientSize = new System.Drawing.Size(684, 498);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelLeft);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log In";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogInForm_FormClosing);
             this.Load += new System.EventHandler(this.LogInForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelRight.ResumeLayout(false);

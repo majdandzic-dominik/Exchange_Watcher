@@ -18,9 +18,9 @@ namespace ExchangeWatcher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
+            Application.Run(new MainForm());
             //Application.Run(new SignUpForm());
-            Application.Run(new LogInForm());
+            //Application.Run(new LogInForm());
         }
 
    

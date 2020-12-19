@@ -253,6 +253,7 @@ namespace ExchangeWatcher
             this.lblLogIn.Size = new System.Drawing.Size(228, 17);
             this.lblLogIn.TabIndex = 5;
             this.lblLogIn.Text = "Have an account? Log in instead.";
+            this.lblLogIn.Click += new System.EventHandler(this.lblLogIn_Click);
             // 
             // lblPassword2
             // 
@@ -305,10 +306,13 @@ namespace ExchangeWatcher
             this.ClientSize = new System.Drawing.Size(684, 498);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelLeft);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SignUpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sign Up";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SignUpForm_FormClosing);
             this.Load += new System.EventHandler(this.SignUpForm_Load);
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();

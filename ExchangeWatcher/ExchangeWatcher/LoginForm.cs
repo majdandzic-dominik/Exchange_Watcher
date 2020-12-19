@@ -28,6 +28,8 @@ namespace ExchangeWatcher
         private void lblExit_Click(object sender, EventArgs e)
         {
             this.Hide();
+            var f = new MainForm();
+            f.Show();
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -37,10 +39,10 @@ namespace ExchangeWatcher
                 if(DoesPasswordMatch(userDB.GetUserPasswordHash(userCollection, txtUserName.Text), txtPassword.Text))
                 {
                     lblErrorMsg.Text = "";
+                    this.Hide();
                     var f = new MainForm();
                     f.SetUserName(txtUserName.Text);
-                    f.Show();
-                    this.Hide();
+                    f.Show();                    
                 }
                 else
                 {
@@ -60,5 +62,16 @@ namespace ExchangeWatcher
             return BC.Verify(password, hashedPassword);
         }
 
+        private void lblSignUp_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var f = new SignUpForm();
+            f.Show();
+        }
+
+        private void LogInForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

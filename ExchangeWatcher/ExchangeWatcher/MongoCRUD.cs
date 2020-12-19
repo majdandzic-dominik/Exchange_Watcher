@@ -24,7 +24,7 @@ namespace ExchangeWatcher
             if (GetNumOfUsers<T>(table, userName) == 0 && GetNumOfEmails<T>(table, email) == 0)
             {
                 collection.InsertOneAsync(user);
-                return "Sign up successfull.";
+                return "";
             }
 
             else if (GetNumOfUsers<T>(table, userName) != 0 && GetNumOfEmails<T>(table, email) == 0)
@@ -64,7 +64,17 @@ namespace ExchangeWatcher
 
             return collection.Find(filter).ToList()[0].Password;
         }
-        
+
+
+        public List<T> LoadRecordByDate<T>(string table, string date)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filter = Builders<T>.Filter.Eq("Date", date);
+
+            return collection.Find(filter).ToList();
+        }
+
+
 
 
     }
