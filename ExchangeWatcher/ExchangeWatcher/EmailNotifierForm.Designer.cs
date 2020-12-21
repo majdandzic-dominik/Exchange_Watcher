@@ -30,25 +30,32 @@ namespace ExchangeWatcher
         private void InitializeComponent()
         {
             this.panelBackground = new System.Windows.Forms.Panel();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
+            this.lblExit = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.panelEmailLine = new System.Windows.Forms.Panel();
             this.numChange = new System.Windows.Forms.NumericUpDown();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.panelEmailLine = new System.Windows.Forms.Panel();
             this.lblChange = new System.Windows.Forms.Label();
             this.lblCurrency = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.cboCurrency = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.lblExit = new System.Windows.Forms.Label();
+            this.dgvNotifications = new System.Windows.Forms.DataGridView();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Change = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numChange)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotifications)).BeginInit();
             this.SuspendLayout();
             // 
             // panelBackground
             // 
             this.panelBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.panelBackground.Controls.Add(this.btnUpdate);
+            this.panelBackground.Controls.Add(this.lblErrorMsg);
             this.panelBackground.Controls.Add(this.lblExit);
             this.panelBackground.Controls.Add(this.btnDelete);
             this.panelBackground.Controls.Add(this.btnInsert);
@@ -59,12 +66,74 @@ namespace ExchangeWatcher
             this.panelBackground.Controls.Add(this.lblCurrency);
             this.panelBackground.Controls.Add(this.lblEmail);
             this.panelBackground.Controls.Add(this.cboCurrency);
-            this.panelBackground.Controls.Add(this.dataGridView1);
+            this.panelBackground.Controls.Add(this.dgvNotifications);
             this.panelBackground.Location = new System.Drawing.Point(10, 12);
             this.panelBackground.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelBackground.Name = "panelBackground";
-            this.panelBackground.Size = new System.Drawing.Size(853, 308);
+            this.panelBackground.Size = new System.Drawing.Size(874, 308);
             this.panelBackground.TabIndex = 0;
+            // 
+            // lblErrorMsg
+            // 
+            this.lblErrorMsg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMsg.Location = new System.Drawing.Point(30, 217);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(293, 51);
+            this.lblErrorMsg.TabIndex = 11;
+            this.lblErrorMsg.Text = "Error";
+            this.lblErrorMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblErrorMsg.Visible = false;
+            // 
+            // lblExit
+            // 
+            this.lblExit.AutoSize = true;
+            this.lblExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExit.ForeColor = System.Drawing.Color.White;
+            this.lblExit.Location = new System.Drawing.Point(5, 278);
+            this.lblExit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblExit.Name = "lblExit";
+            this.lblExit.Size = new System.Drawing.Size(78, 21);
+            this.lblExit.TabIndex = 10;
+            this.lblExit.Text = "Go back";
+            this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnDelete.Location = new System.Drawing.Point(235, 180);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(88, 34);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.Color.White;
+            this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnInsert.Location = new System.Drawing.Point(33, 180);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(88, 34);
+            this.btnInsert.TabIndex = 8;
+            this.btnInsert.Text = "Insert";
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // panelEmailLine
+            // 
+            this.panelEmailLine.BackColor = System.Drawing.Color.White;
+            this.panelEmailLine.Location = new System.Drawing.Point(81, 52);
+            this.panelEmailLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelEmailLine.Name = "panelEmailLine";
+            this.panelEmailLine.Size = new System.Drawing.Size(242, 1);
+            this.panelEmailLine.TabIndex = 6;
             // 
             // numChange
             // 
@@ -79,6 +148,11 @@ namespace ExchangeWatcher
             131072});
             this.numChange.Location = new System.Drawing.Point(140, 129);
             this.numChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.numChange.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numChange.Minimum = new decimal(new int[] {
             1,
             0,
@@ -88,7 +162,7 @@ namespace ExchangeWatcher
             this.numChange.Size = new System.Drawing.Size(140, 27);
             this.numChange.TabIndex = 7;
             this.numChange.Value = new decimal(new int[] {
-            1,
+            1000,
             0,
             0,
             196608});
@@ -106,15 +180,6 @@ namespace ExchangeWatcher
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(242, 26);
             this.txtEmail.TabIndex = 5;
-            // 
-            // panelEmailLine
-            // 
-            this.panelEmailLine.BackColor = System.Drawing.Color.White;
-            this.panelEmailLine.Location = new System.Drawing.Point(81, 52);
-            this.panelEmailLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelEmailLine.Name = "panelEmailLine";
-            this.panelEmailLine.Size = new System.Drawing.Size(242, 1);
-            this.panelEmailLine.TabIndex = 6;
             // 
             // lblChange
             // 
@@ -180,59 +245,66 @@ namespace ExchangeWatcher
             this.cboCurrency.Size = new System.Drawing.Size(140, 29);
             this.cboCurrency.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvNotifications
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(366, 14);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(455, 267);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvNotifications.AllowUserToAddRows = false;
+            this.dgvNotifications.AllowUserToDeleteRows = false;
+            this.dgvNotifications.AllowUserToResizeColumns = false;
+            this.dgvNotifications.AllowUserToResizeRows = false;
+            this.dgvNotifications.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvNotifications.BackgroundColor = System.Drawing.Color.White;
+            this.dgvNotifications.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNotifications.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Email,
+            this.Currency,
+            this.Change});
+            this.dgvNotifications.Location = new System.Drawing.Point(350, 14);
+            this.dgvNotifications.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvNotifications.Name = "dgvNotifications";
+            this.dgvNotifications.ReadOnly = true;
+            this.dgvNotifications.Size = new System.Drawing.Size(511, 280);
+            this.dgvNotifications.TabIndex = 0;
             // 
-            // btnInsert
+            // Email
             // 
-            this.btnInsert.BackColor = System.Drawing.Color.White;
-            this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnInsert.Location = new System.Drawing.Point(98, 180);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(88, 34);
-            this.btnInsert.TabIndex = 8;
-            this.btnInsert.Text = "Insert";
-            this.btnInsert.UseVisualStyleBackColor = false;
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
-            // btnDelete
+            // Currency
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnDelete.Location = new System.Drawing.Point(192, 180);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 34);
-            this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = false;
+            this.Currency.DataPropertyName = "Currency";
+            this.Currency.HeaderText = "Currency";
+            this.Currency.Name = "Currency";
+            this.Currency.ReadOnly = true;
             // 
-            // lblExit
+            // Change
             // 
-            this.lblExit.AutoSize = true;
-            this.lblExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExit.ForeColor = System.Drawing.Color.White;
-            this.lblExit.Location = new System.Drawing.Point(5, 278);
-            this.lblExit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblExit.Name = "lblExit";
-            this.lblExit.Size = new System.Drawing.Size(78, 21);
-            this.lblExit.TabIndex = 10;
-            this.lblExit.Text = "Go back";
+            this.Change.DataPropertyName = "PercentageChange";
+            this.Change.HeaderText = "Change[%]";
+            this.Change.Name = "Change";
+            this.Change.ReadOnly = true;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnUpdate.Location = new System.Drawing.Point(134, 180);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(88, 34);
+            this.btnUpdate.TabIndex = 12;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // EmailNotifierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(874, 331);
+            this.ClientSize = new System.Drawing.Size(895, 331);
             this.Controls.Add(this.panelBackground);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -245,7 +317,7 @@ namespace ExchangeWatcher
             this.panelBackground.ResumeLayout(false);
             this.panelBackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numChange)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotifications)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,7 +326,7 @@ namespace ExchangeWatcher
 
         private System.Windows.Forms.Panel panelBackground;
         private System.Windows.Forms.ComboBox cboCurrency;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvNotifications;
         private System.Windows.Forms.Label lblChange;
         private System.Windows.Forms.Label lblCurrency;
         private System.Windows.Forms.Label lblEmail;
@@ -264,5 +336,10 @@ namespace ExchangeWatcher
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.Label lblExit;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblErrorMsg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Currency;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Change;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

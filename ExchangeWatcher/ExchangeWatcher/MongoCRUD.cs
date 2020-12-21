@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,16 @@ namespace ExchangeWatcher
             db = client.GetDatabase(database);
         }
 
-        public void InsertUser<User>(string table, User user)
+        public void InsertData<T>(string table, T data)
         {
-            var collection = db.GetCollection<User>(table);
-            collection.InsertOneAsync(user);
-           
+            var collection = db.GetCollection<T>(table);
+            collection.InsertOneAsync(data);
+        }
 
+        public List<T> LoadAllRecords<T>(string table)
+        {
+            var collection = db.GetCollection<T>(table);
+            return collection.Find(_ => true).ToList();
         }
 
         public string GetUserLogInErrorMsg<User>(string table, string userName, string email)
@@ -81,6 +86,57 @@ namespace ExchangeWatcher
 
 
 
+        public void UpdateNotification(string table, Notification notification)
+        {
+            var collection = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
+                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+                & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
+
+            var update = Builders<Notification>.Update.Set("PercentageChange", notification.PercentageChange);
+
+            collection.UpdateOne(filter, update);
+        }
+
+        public void InsertNotification(string table, Notification notification)
+        {
+            var collection = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
+                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+                & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
+
+
+            if (collection.Find(filter).ToList().Count == 0)
+            {
+                collection.InsertOne(new Notification(notification.Email, notification.UserName, notification.PercentageChange, notification.Currency));
+            }
+        }
+
+        public void DeleteNotification(string table, Notification notification)
+        {
+            var collection = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
+                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+                & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
+
+
+            collection.DeleteOne(filter);
+        }
+
+        public bool DoesNotificationExist(string table, Notification notification)
+        {
+            var collection = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
+                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+                & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
+
+
+            if (collection.Find(filter).ToList().Count != 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }

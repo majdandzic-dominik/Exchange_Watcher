@@ -51,7 +51,7 @@ namespace ExchangeWatcher
                         if(lblErrorMsg.Text == "")
                         {
                             User user = new User(txtUserName.Text, txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
-                            userDB.InsertUser<User>(userCollection, user);
+                            userDB.InsertData<User>(userCollection, user);
                             this.Hide();
                             var f = new MainForm();
                             f.SetUserName(txtUserName.Text);
