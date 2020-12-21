@@ -68,7 +68,7 @@ namespace ExchangeWatcher
             this.btnLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogIn.ForeColor = System.Drawing.Color.White;
-            this.btnLogIn.Location = new System.Drawing.Point(40, 332);
+            this.btnLogIn.Location = new System.Drawing.Point(41, 332);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(324, 34);
             this.btnLogIn.TabIndex = 4;
@@ -81,7 +81,7 @@ namespace ExchangeWatcher
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.txtPassword.Location = new System.Drawing.Point(40, 254);
+            this.txtPassword.Location = new System.Drawing.Point(41, 254);
             this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(324, 19);
@@ -93,7 +93,7 @@ namespace ExchangeWatcher
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.txtUserName.Location = new System.Drawing.Point(40, 160);
+            this.txtUserName.Location = new System.Drawing.Point(41, 160);
             this.txtUserName.MaxLength = 20;
             this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
@@ -103,7 +103,7 @@ namespace ExchangeWatcher
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.panel3.Location = new System.Drawing.Point(40, 280);
+            this.panel3.Location = new System.Drawing.Point(41, 280);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(324, 2);
             this.panel3.TabIndex = 4;
@@ -111,7 +111,7 @@ namespace ExchangeWatcher
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.panel1.Location = new System.Drawing.Point(40, 186);
+            this.panel1.Location = new System.Drawing.Point(41, 186);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(324, 2);
             this.panel1.TabIndex = 4;
@@ -121,7 +121,7 @@ namespace ExchangeWatcher
             this.lblSignUp.AutoSize = true;
             this.lblSignUp.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.lblSignUp.Location = new System.Drawing.Point(88, 378);
+            this.lblSignUp.Location = new System.Drawing.Point(89, 378);
             this.lblSignUp.Name = "lblSignUp";
             this.lblSignUp.Size = new System.Drawing.Size(223, 17);
             this.lblSignUp.TabIndex = 5;
@@ -155,7 +155,7 @@ namespace ExchangeWatcher
             this.lblLogIn.AutoSize = true;
             this.lblLogIn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.lblLogIn.Location = new System.Drawing.Point(34, 75);
+            this.lblLogIn.Location = new System.Drawing.Point(35, 75);
             this.lblLogIn.Name = "lblLogIn";
             this.lblLogIn.Size = new System.Drawing.Size(92, 33);
             this.lblLogIn.TabIndex = 2;
@@ -197,9 +197,9 @@ namespace ExchangeWatcher
             this.panelRight.Controls.Add(this.lblUserName);
             this.panelRight.Controls.Add(this.lblLogIn);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(274, 0);
+            this.panelRight.Location = new System.Drawing.Point(275, 0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(410, 498);
+            this.panelRight.Size = new System.Drawing.Size(409, 498);
             this.panelRight.TabIndex = 3;
             // 
             // lblErrorMsg
@@ -222,7 +222,7 @@ namespace ExchangeWatcher
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(274, 498);
+            this.panelLeft.Size = new System.Drawing.Size(275, 498);
             this.panelLeft.TabIndex = 2;
             // 
             // LogInForm

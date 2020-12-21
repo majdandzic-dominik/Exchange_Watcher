@@ -17,28 +17,33 @@ namespace ExchangeWatcher
             db = client.GetDatabase(database);
         }
 
-        public string InsertUserIfNotExist<T>(string table, T user, string userName, string email)
+        public void InsertUser<User>(string table, User user)
         {
-            var collection = db.GetCollection<T>(table);           
+            var collection = db.GetCollection<User>(table);
+            collection.InsertOneAsync(user);
+           
 
-            if (GetNumOfUsers<T>(table, userName) == 0 && GetNumOfEmails<T>(table, email) == 0)
+        }
+
+        public string GetUserLogInErrorMsg<User>(string table, string userName, string email)
+        {
+            var collection = db.GetCollection<User>(table);
+            if (GetNumOfUsers<User>(table, userName) == 0 && GetNumOfEmails<User>(table, email) == 0)
             {
-                collection.InsertOneAsync(user);
                 return "";
             }
 
-            else if (GetNumOfUsers<T>(table, userName) != 0 && GetNumOfEmails<T>(table, email) == 0)
+            else if (GetNumOfUsers<User>(table, userName) != 0 && GetNumOfEmails<User>(table, email) == 0)
             {
                 return "User name already in use";
             }
 
-            else if (GetNumOfUsers<T>(table, userName) == 0 && GetNumOfEmails<T>(table, email) != 0)
+            else if (GetNumOfUsers<User>(table, userName) == 0 && GetNumOfEmails<User>(table, email) != 0)
             {
                 return "Email already in use";
             }
 
             return "Both user name and email are already in use";
-
         }
 
         public int GetNumOfUsers<T>(string table, string userName)

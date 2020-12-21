@@ -45,12 +45,13 @@ namespace ExchangeWatcher
                 if(txtPassword.TextLength > 7 && txtUserName.TextLength > 3)
                 {
                     if(txtPassword.Text == txtConfirmPassword.Text)
-                    {
-                        User user = new User(txtUserName.Text, txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
-                        lblErrorMsg.Text = userDB.InsertUserIfNotExist<User>(userCollection, user, user.UserName, user.Email);
+                    {                        
+                        lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text, txtEmail.Text);
                         lblErrorMsg.Visible = true;
                         if(lblErrorMsg.Text == "")
                         {
+                            User user = new User(txtUserName.Text, txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
+                            userDB.InsertUser<User>(userCollection, user);
                             this.Hide();
                             var f = new MainForm();
                             f.SetUserName(txtUserName.Text);

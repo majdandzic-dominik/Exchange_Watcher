@@ -37,3 +37,4 @@ F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\BCrypt.N
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Memory.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Numerics.Vectors.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.EmailNotifierForm.resources
