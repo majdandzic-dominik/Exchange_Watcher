@@ -39,6 +39,7 @@ namespace ExchangeWatcher
             this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MiddleRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblUserName = new System.Windows.Forms.Label();
+            this.btnSignOut = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExchangeRates)).BeginInit();
             this.SuspendLayout();
@@ -46,6 +47,7 @@ namespace ExchangeWatcher
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.panel1.Controls.Add(this.btnSignOut);
             this.panel1.Controls.Add(this.btnNotificationSettings);
             this.panel1.Controls.Add(this.lblLoggedInAs);
             this.panel1.Controls.Add(this.lblSignUp);
@@ -168,6 +170,20 @@ namespace ExchangeWatcher
             this.lblUserName.TabIndex = 2;
             this.lblUserName.Text = "user";
             // 
+            // btnSignOut
+            // 
+            this.btnSignOut.BackColor = System.Drawing.Color.White;
+            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnSignOut.Location = new System.Drawing.Point(124, 545);
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Size = new System.Drawing.Size(88, 34);
+            this.btnSignOut.TabIndex = 11;
+            this.btnSignOut.Text = "Sign out";
+            this.btnSignOut.UseVisualStyleBackColor = false;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -201,6 +217,7 @@ namespace ExchangeWatcher
         private System.Windows.Forms.Label lblSignUp;
         private System.Windows.Forms.Label lblLoggedInAs;
         private System.Windows.Forms.Button btnNotificationSettings;
+        private System.Windows.Forms.Button btnSignOut;
     }
 }
 

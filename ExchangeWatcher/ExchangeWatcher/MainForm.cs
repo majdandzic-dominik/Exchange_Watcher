@@ -42,6 +42,7 @@ namespace ExchangeWatcher
                 btnLogIn.Visible = false;
                 lblSignUp.Visible = false;
                 btnNotificationSettings.Visible = true;
+                btnSignOut.Visible = true;
             }
             else
             {
@@ -50,6 +51,7 @@ namespace ExchangeWatcher
                 btnLogIn.Visible = true;
                 lblSignUp.Visible = true;
                 btnNotificationSettings.Visible = false;
+                btnSignOut.Visible = false;
             }
             
         }
@@ -85,6 +87,15 @@ namespace ExchangeWatcher
         {
             this.Hide();
             var f = new EmailNotifierForm();
+            f.SetUserName(loggedInUser);
+            f.Show();
+        }
+
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var f = new MainForm();
+            f.SetUserName("");
             f.Show();
         }
     }

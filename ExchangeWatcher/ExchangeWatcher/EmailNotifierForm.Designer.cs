@@ -30,6 +30,7 @@ namespace ExchangeWatcher
         private void InitializeComponent()
         {
             this.panelBackground = new System.Windows.Forms.Panel();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.lblErrorMsg = new System.Windows.Forms.Label();
             this.lblExit = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@ namespace ExchangeWatcher
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Change = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numChange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotifications)).BeginInit();
@@ -72,6 +72,20 @@ namespace ExchangeWatcher
             this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(874, 308);
             this.panelBackground.TabIndex = 0;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnUpdate.Location = new System.Drawing.Point(134, 180);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(88, 34);
+            this.btnUpdate.TabIndex = 12;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblErrorMsg
             // 
@@ -175,7 +189,7 @@ namespace ExchangeWatcher
             this.txtEmail.ForeColor = System.Drawing.Color.White;
             this.txtEmail.Location = new System.Drawing.Point(81, 27);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmail.MaxLength = 20;
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(242, 26);
@@ -285,20 +299,6 @@ namespace ExchangeWatcher
             this.Change.HeaderText = "Change[%]";
             this.Change.Name = "Change";
             this.Change.ReadOnly = true;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.White;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnUpdate.Location = new System.Drawing.Point(134, 180);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 34);
-            this.btnUpdate.TabIndex = 12;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // EmailNotifierForm
             // 

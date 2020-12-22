@@ -84,7 +84,12 @@ namespace ExchangeWatcherClassLibrary
             return collection.Find(filter).ToList();
         }
 
-
+        public List<Notification> LoadUsersNotifications<T>(string table, string userName)
+        {
+            var collection = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("UserName", userName);
+            return collection.Find(filter).ToList();
+        }
 
         public void UpdateNotification(string table, Notification notification)
         {
@@ -130,12 +135,35 @@ namespace ExchangeWatcherClassLibrary
                 & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
                 & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
 
+            
+            if (collection.Find(filter).ToList().Count != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool DoesUserEmailComboExist(string table, string userName, string email)
+        {
+            var collection = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("Email", email)
+                & Builders<Notification>.Filter.Eq("UserName", userName);
 
             if (collection.Find(filter).ToList().Count != 0)
             {
                 return true;
             }
             return false;
+        }
+
+        public List<Notification> LoadUserEmailCombo(string table, string userName, string email)
+        {
+            var colletction = db.GetCollection<Notification>(table);
+            var filter = Builders<Notification>.Filter.Eq("Email", email)
+                & Builders<Notification>.Filter.Eq("UserName", userName);
+
+            return colletction.Find(filter).ToList();
         }
 
 
@@ -151,5 +179,13 @@ namespace ExchangeWatcherClassLibrary
             }
 
         }
+
+
+        public List<T> LoadAllDistinctOneField<T>(string table, string field)
+        {
+            var collection = db.GetCollection<T>(table);
+            return collection.Distinct<T>(field, new BsonDocument()).ToList();
+        }
+
     }
 }

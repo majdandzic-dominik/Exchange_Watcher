@@ -89,15 +89,16 @@ namespace ExchangeWatcherEmailSender
                     Console.WriteLine("Error:\n" + e.Message);
                 }
             }
+            message.To.Clear();
         }
 
         public string AutoSetMessageText()
         {
             string msgTxt = "";
+            msgTxt += "The exchange rate changes for today are: \r\n";
             foreach (var v in watchedCurrencies)
-            { 
-                msgTxt += "The exchange rate changes for today are: \r\n";
-                msgTxt += (v.Currency + ": " + v.MrPercentChange.ToString() + "%\r\n");
+            {                 
+                msgTxt += (v.Currency + ": " + Math.Round(v.MrPercentChange, 4).ToString() + "%\r\n");
             }
             return msgTxt;
         }
@@ -140,5 +141,18 @@ namespace ExchangeWatcherEmailSender
             watchedCurrencies[i].MrPercentChange = Math.Round(percentChange, 4);
         }
 
+        public List<MRChangeByCurrency> GetWatchedCurrenciesList()
+        {
+            return watchedCurrencies;
+        }
+
+
+        public string gettext()
+        {
+            string a = "";
+            a += toEmail + "\r\n";
+            a += AutoSetMessageText();
+            return a;
+        }
     }
 }

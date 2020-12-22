@@ -17,7 +17,7 @@ namespace ExchangeWatcher
         private string userDatabase = "Users";
         private string emailCollection = "EmailNotifications";
         private MongoCRUD userDB;
-        private string userName = "testUser";
+        private string userName;
 
         public EmailNotifierForm()
         {
@@ -29,10 +29,13 @@ namespace ExchangeWatcher
             cboCurrency.SelectedIndex = 0;
             userDB = new MongoCRUD(userDatabase);
             dgvNotifications.AutoGenerateColumns = false;
-            dgvNotifications.DataSource = userDB.LoadAllRecords<Notification>(emailCollection);
+            dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, userName);
 
             lblErrorMsg.MaximumSize = new Size(293, 51);
             lblErrorMsg.AutoSize = true;
+
+            dgvNotifications.Columns[0].Width = 250;
+
         }
         
         private void EmailNotifier_FormClosing(object sender, FormClosingEventArgs e)
@@ -44,6 +47,7 @@ namespace ExchangeWatcher
         {
             this.Hide();
             var f = new MainForm();
+            f.SetUserName(userName);
             f.Show();
         }
 
@@ -55,7 +59,7 @@ namespace ExchangeWatcher
                 if(!userDB.DoesNotificationExist(emailCollection, notification))
                 {
                     userDB.InsertNotification(emailCollection, notification);
-                    dgvNotifications.DataSource = userDB.LoadAllRecords<Notification>(emailCollection);
+                    dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, userName);
                     lblErrorMsg.Visible = false;
                 }
                 else
@@ -92,7 +96,7 @@ namespace ExchangeWatcher
                 if (userDB.DoesNotificationExist(emailCollection, notification))
                 {
                     userDB.UpdateNotification(emailCollection, notification);
-                    dgvNotifications.DataSource = userDB.LoadAllRecords<Notification>(emailCollection);
+                    dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, userName);
                     lblErrorMsg.Visible = false;
                 }
                 else
@@ -116,7 +120,7 @@ namespace ExchangeWatcher
                 if (userDB.DoesNotificationExist(emailCollection, notification))
                 {
                     userDB.DeleteNotification(emailCollection, notification);
-                    dgvNotifications.DataSource = userDB.LoadAllRecords<Notification>(emailCollection);
+                    dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, userName);
                     lblErrorMsg.Visible = false;
                 }
                 else
@@ -130,6 +134,11 @@ namespace ExchangeWatcher
                 lblErrorMsg.Text = "Invalid email format";
                 lblErrorMsg.Visible = true;
             }
+        }
+
+        public void SetUserName(string userName)
+        {
+            this.userName = userName;
         }
     }
 }
