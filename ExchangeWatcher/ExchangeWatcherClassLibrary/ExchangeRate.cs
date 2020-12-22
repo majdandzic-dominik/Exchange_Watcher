@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ExchangeWatcherEmailSender
+namespace ExchangeWatcherClassLibrary
 {
-    class ExchangeRate
+    public class ExchangeRate
     {
         [BsonId]
         private Guid Id;
@@ -34,11 +34,6 @@ namespace ExchangeWatcherEmailSender
         public string MiddleRate { get => middleRate; set => middleRate = value; }
         public Guid Id1 { get => Id; set => Id = value; }
 
-        public string GetAllValuesString()
-        {
-            string text = date + " " + country + " " + currency + " " + unit + " " + middleRate;
-
-            return text;
-        }
+        
     }
 }

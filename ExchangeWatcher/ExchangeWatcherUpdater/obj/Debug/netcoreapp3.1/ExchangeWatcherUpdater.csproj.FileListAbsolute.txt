@@ -22,3 +22,5 @@ F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherUpdater\obj\Debug\n
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherUpdater\obj\Debug\netcoreapp3.1\ExchangeWatcherUpdater.dll
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherUpdater\obj\Debug\netcoreapp3.1\ExchangeWatcherUpdater.pdb
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherUpdater\obj\Debug\netcoreapp3.1\ExchangeWatcherUpdater.genruntimeconfig.cache
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherUpdater\bin\Debug\netcoreapp3.1\ExchangeWatcherClassLibrary.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherUpdater\bin\Debug\netcoreapp3.1\ExchangeWatcherClassLibrary.pdb

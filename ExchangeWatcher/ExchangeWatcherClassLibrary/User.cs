@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExchangeWatcher
+namespace ExchangeWatcherClassLibrary
 {
-    class User
+    public class User
     {
         [BsonId]
         private Guid Id;

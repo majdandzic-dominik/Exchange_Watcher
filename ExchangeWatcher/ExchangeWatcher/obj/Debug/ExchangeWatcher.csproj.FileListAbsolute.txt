@@ -38,3 +38,5 @@ F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.M
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Numerics.Vectors.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\obj\Debug\ExchangeWatcher.EmailNotifierForm.resources
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\ExchangeWatcherClassLibrary.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcher\bin\Debug\ExchangeWatcherClassLibrary.pdb

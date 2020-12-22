@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BC = BCrypt.Net.BCrypt;
+using ExchangeWatcherClassLibrary;
 
 
 namespace ExchangeWatcher

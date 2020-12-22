@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using Newtonsoft.Json;
+using ExchangeWatcherClassLibrary;
 
 namespace ExchangeWatcher
 {
@@ -40,6 +41,7 @@ namespace ExchangeWatcher
                 lblLoggedInAs.Visible = true;
                 btnLogIn.Visible = false;
                 lblSignUp.Visible = false;
+                btnNotificationSettings.Visible = true;
             }
             else
             {
@@ -47,6 +49,7 @@ namespace ExchangeWatcher
                 lblLoggedInAs.Visible = false;
                 btnLogIn.Visible = true;
                 lblSignUp.Visible = true;
+                btnNotificationSettings.Visible = false;
             }
             
         }
@@ -76,6 +79,13 @@ namespace ExchangeWatcher
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnNotificationSettings_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var f = new EmailNotifierForm();
+            f.Show();
         }
     }
 }

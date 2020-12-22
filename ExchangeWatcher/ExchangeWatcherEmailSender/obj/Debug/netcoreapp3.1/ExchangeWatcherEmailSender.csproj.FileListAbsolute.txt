@@ -22,3 +22,5 @@ F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherEmailSender\bin\Deb
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherEmailSender\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy32.dll
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherEmailSender\bin\Debug\netcoreapp3.1\runtimes\win\native\snappy64.dll
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherEmailSender\obj\Debug\netcoreapp3.1\ExchangeWatcherEmailSender.csproj.CopyComplete
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherEmailSender\bin\Debug\netcoreapp3.1\ExchangeWatcherClassLibrary.dll
+F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherEmailSender\bin\Debug\netcoreapp3.1\ExchangeWatcherClassLibrary.pdb

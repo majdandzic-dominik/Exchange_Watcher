@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExchangeWatcher
+namespace ExchangeWatcherClassLibrary
 {
-    class MongoCRUD
+    public class MongoCRUD
     {
         private IMongoDatabase db;
 
@@ -138,5 +138,18 @@ namespace ExchangeWatcher
             return false;
         }
 
+
+        public void InsertRecordListByDate<T>(string table, List<T> records, string today)
+        {
+            var collection = db.GetCollection<T>(table);
+
+            var filter = Builders<T>.Filter.Eq("Date", today);
+
+            if (collection.Find(filter).ToList().Count == 0)
+            {
+                collection.InsertMany(records);
+            }
+
+        }
     }
 }
