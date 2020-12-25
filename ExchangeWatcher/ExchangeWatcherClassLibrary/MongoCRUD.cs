@@ -30,20 +30,19 @@ namespace ExchangeWatcherClassLibrary
             return collection.Find(_ => true).ToList();
         }
 
-        public string GetUserLogInErrorMsg<User>(string table, string userName, string email)
+        public string GetUserLogInErrorMsg<User>(string table, string userNameUpper, string email)
         {
-            var collection = db.GetCollection<User>(table);
-            if (GetNumOfUsers<User>(table, userName) == 0 && GetNumOfEmails<User>(table, email) == 0)
+            if (GetNumOfUsers<User>(table, userNameUpper) == 0 && GetNumOfEmails<User>(table, email) == 0)
             {
                 return "";
             }
 
-            else if (GetNumOfUsers<User>(table, userName) != 0 && GetNumOfEmails<User>(table, email) == 0)
+            else if (GetNumOfUsers<User>(table, userNameUpper) != 0 && GetNumOfEmails<User>(table, email) == 0)
             {
                 return "User name already in use";
             }
 
-            else if (GetNumOfUsers<User>(table, userName) == 0 && GetNumOfEmails<User>(table, email) != 0)
+            else if (GetNumOfUsers<User>(table, userNameUpper) == 0 && GetNumOfEmails<User>(table, email) != 0)
             {
                 return "Email already in use";
             }
@@ -51,12 +50,20 @@ namespace ExchangeWatcherClassLibrary
             return "Both user name and email are already in use";
         }
 
-        public int GetNumOfUsers<T>(string table, string userName)
+        public int GetNumOfUsers<T>(string table, string userNameUpper)
         {
             var collection = db.GetCollection<T>(table);
-            var filterUserName = Builders<T>.Filter.Eq("UserName", userName);
+            var filterUserName = Builders<T>.Filter.Eq("UserNameUpper", userNameUpper);
 
             return collection.Find(filterUserName).ToList().Count;
+        }
+
+        public User GetUser(string table, string userNameUpper)
+        {
+            var collection = db.GetCollection<User>(table);
+            var filter = Builders<User>.Filter.Eq("UserNameUpper", userNameUpper);
+
+            return collection.Find(filter).ToList()[0];
         }
 
         private int GetNumOfEmails<T>(string table, string email)
@@ -67,10 +74,10 @@ namespace ExchangeWatcherClassLibrary
             return collection.Find(filterEmail).ToList().Count;
         }
 
-        public string GetUserPasswordHash(string table, string userName)
+        public string GetUserPasswordHash(string table, string userNameUpper)
         {
             var collection = db.GetCollection<User>(table);
-            var filter = Builders<User>.Filter.Eq("UserName", userName);
+            var filter = Builders<User>.Filter.Eq("UserNameUpper", userNameUpper);
 
             return collection.Find(filter).ToList()[0].Password;
         }

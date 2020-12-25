@@ -81,65 +81,6 @@ namespace ExchangeWatcherEmailSender
             
 
 
-            
-            //emailSender.ChangeReceiver("doc000000@gmail.com", "filler username");
-            //emailSender.AddWatchedCurrency("EUR", 0.1); //percentage is the change the user want's to track, not the actual change
-            ////test values
-            //emailSender.AddWatchedCurrency("AUD", 0.2);
-            //emailSender.AddWatchedCurrency("CAD", 3.4);
-            //emailSender.AddWatchedCurrency("JPY", 0.001);
-
-
-
-            
-
-            //foreach (var v in mrChangeList)
-            //{
-            //    for (int i = 0; i < emailSender.GetNumOfWatcherCurrencies(); i++)
-            //    {
-            //        if(emailSender.GetWatchedCurrencyAtIndex(i) == v.Currency)
-            //        {
-            //            if(emailSender.GetPercentChangeAtIndex(i) <= v.MRChange)
-            //            {
-            //                emailSender.SetPercentChangeAtIndex(i, v.MRChange);                            
-            //            }
-            //            else
-            //            {
-            //                emailSender.RemoveWatchedCurrency(i);
-            //            }
-            //        }                
-
-            //    }
-            //}
-
-
-            
-
-            //double mrChangeForWatchedCurrency;
-            //for (int i = 0; i < emailSender.GetNumOfWatcherCurrencies(); i++)
-            //{
-            //    mrChangeForWatchedCurrency = mrChangeList.First(cur => cur.Currency == emailSender.GetWatchedCurrencyAtIndex(i)).MRChange;
-            //    if (mrChangeForWatchedCurrency < emailSender.GetPercentChangeAtIndex(i))
-            //    {
-            //        emailSender.RemoveWatchedCurrency(i);
-            //        if (emailSender.GetNumOfWatcherCurrencies() > 1)
-            //        {
-            //            i--;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        emailSender.SetPercentChangeAtIndex(i, mrChangeForWatchedCurrency);
-            //    }
-                
-            //}
-
-            
-
-
-
-
-
 
 
 

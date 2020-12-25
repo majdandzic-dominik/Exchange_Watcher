@@ -115,31 +115,6 @@ namespace ExchangeWatcherEmailSender
             updateCount = 0;
         }
 
-        public int GetNumOfWatcherCurrencies()
-        {
-            return watchedCurrencies.Count;
-        }
-
-        public void RemoveWatchedCurrency(int i)
-        {
-            watchedCurrencies.RemoveAt(i);
-            updateCount--;
-        }
-
-        public string GetWatchedCurrencyAtIndex(int i)
-        {
-            return watchedCurrencies[i].Currency;
-        }
-
-        public double GetPercentChangeAtIndex(int i)
-        {
-            return watchedCurrencies[i].MrPercentChange;
-        }
-
-        public void SetPercentChangeAtIndex(int i, double percentChange)
-        {
-            watchedCurrencies[i].MrPercentChange = Math.Round(percentChange, 4);
-        }
 
         public List<MRChangeByCurrency> GetWatchedCurrenciesList()
         {

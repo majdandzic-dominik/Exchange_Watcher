@@ -47,11 +47,11 @@ namespace ExchangeWatcher
                 {
                     if(txtPassword.Text == txtConfirmPassword.Text)
                     {                        
-                        lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text, txtEmail.Text);
+                        lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text.ToUpper(), txtEmail.Text);
                         lblErrorMsg.Visible = true;
                         if(lblErrorMsg.Text == "")
                         {
-                            User user = new User(txtUserName.Text, txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
+                            User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
                             userDB.InsertData<User>(userCollection, user);
                             this.Hide();
                             var f = new MainForm();
@@ -69,7 +69,7 @@ namespace ExchangeWatcher
                 {
                     if(txtUserName.TextLength <= 3)
                     {
-                        lblErrorMsg.Text = "User name has to be atleast 4 characters. Password needs to be atlest 8 characters";
+                        lblErrorMsg.Text = "User name has to be atleast 4 characters.";
                         lblErrorMsg.Visible = true;
                     }
                     else

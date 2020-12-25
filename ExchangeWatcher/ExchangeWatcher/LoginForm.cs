@@ -35,14 +35,14 @@ namespace ExchangeWatcher
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            if(userDB.GetNumOfUsers<User>(userCollection, txtUserName.Text) > 0)
+            if(userDB.GetNumOfUsers<User>(userCollection, txtUserName.Text.ToUpper()) > 0)
             {
-                if(DoesPasswordMatch(userDB.GetUserPasswordHash(userCollection, txtUserName.Text), txtPassword.Text))
+                if(DoesPasswordMatch(userDB.GetUserPasswordHash(userCollection, txtUserName.Text.ToUpper()), txtPassword.Text))
                 {
                     lblErrorMsg.Text = "";
                     this.Hide();
                     var f = new MainForm();
-                    f.SetUserName(txtUserName.Text);
+                    f.SetUserName(userDB.GetUser(userCollection, txtUserName.Text.ToUpper()).UserName);
                     f.Show();                    
                 }
                 else
