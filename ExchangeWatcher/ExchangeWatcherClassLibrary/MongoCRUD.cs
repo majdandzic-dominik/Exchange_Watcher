@@ -91,18 +91,17 @@ namespace ExchangeWatcherClassLibrary
             return collection.Find(filter).ToList();
         }
 
-        public List<Notification> LoadUsersNotifications<T>(string table, string userName)
+        public List<Notification> LoadUsersNotifications<T>(string table, string userNameUpper)
         {
             var collection = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("UserName", userName);
+            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", userNameUpper);
             return collection.Find(filter).ToList();
         }
 
         public void UpdateNotification(string table, Notification notification)
         {
             var collection = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
-                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", notification.UserNameUpper)
                 & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
 
             var update = Builders<Notification>.Update.Set("PercentageChange", notification.PercentageChange);
@@ -113,22 +112,20 @@ namespace ExchangeWatcherClassLibrary
         public void InsertNotification(string table, Notification notification)
         {
             var collection = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
-                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", notification.UserNameUpper)
                 & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
 
 
             if (collection.Find(filter).ToList().Count == 0)
             {
-                collection.InsertOne(new Notification(notification.Email, notification.UserName, notification.PercentageChange, notification.Currency));
+                collection.InsertOne(new Notification(notification.Email, notification.UserNameUpper, notification.PercentageChange, notification.Currency));
             }
         }
 
         public void DeleteNotification(string table, Notification notification)
         {
             var collection = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
-                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", notification.UserNameUpper)
                 & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
 
 
@@ -138,8 +135,7 @@ namespace ExchangeWatcherClassLibrary
         public bool DoesNotificationExist(string table, Notification notification)
         {
             var collection = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("Email", notification.Email)
-                & Builders<Notification>.Filter.Eq("UserName", notification.UserName)
+            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", notification.UserNameUpper)
                 & Builders<Notification>.Filter.Eq("Currency", notification.Currency);
 
             

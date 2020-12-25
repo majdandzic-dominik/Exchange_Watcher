@@ -55,7 +55,7 @@ namespace ExchangeWatcher
                             userDB.InsertData<User>(userCollection, user);
                             this.Hide();
                             var f = new MainForm();
-                            f.SetUserName(txtUserName.Text);
+                            f.SetUser(user);
                             f.Show();
                         }
                     }

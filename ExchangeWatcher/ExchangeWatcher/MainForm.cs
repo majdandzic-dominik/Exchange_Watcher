@@ -15,7 +15,7 @@ namespace ExchangeWatcher
 {
     public partial class MainForm : Form
     {
-        private string loggedInUser = "";
+        private User loggedInUser = new User();
         private string exchangeRatesDatabase = "ExchangeRates";
         private string exchangeRatesCollection = "ExchangeRatesList";
         private MongoCRUD exchangeRatesDB;
@@ -35,7 +35,9 @@ namespace ExchangeWatcher
             dgvExchangeRates.AutoGenerateColumns = false;
             dgvExchangeRates.DataSource = exchangeRatesList;
 
-            if(loggedInUser != "")
+
+
+            if(loggedInUser.UserName != "")
             {
                 lblUserName.Visible = true;
                 lblLoggedInAs.Visible = true;
@@ -58,10 +60,10 @@ namespace ExchangeWatcher
 
        
 
-        public void SetUserName(string userName)
+        public void SetUser(User user)
         {
-            loggedInUser = userName;
-            lblUserName.Text = userName;
+            loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password);
+            lblUserName.Text = loggedInUser.UserName;
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -87,7 +89,7 @@ namespace ExchangeWatcher
         {
             this.Hide();
             var f = new EmailNotifierForm();
-            f.SetUserName(loggedInUser);
+            f.SetUser(loggedInUser);
             f.Show();
         }
 
@@ -95,7 +97,7 @@ namespace ExchangeWatcher
         {
             this.Hide();
             var f = new MainForm();
-            f.SetUserName("");
+            f.SetUser(new User());
             f.Show();
         }
     }

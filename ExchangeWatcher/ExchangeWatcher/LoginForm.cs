@@ -42,7 +42,7 @@ namespace ExchangeWatcher
                     lblErrorMsg.Text = "";
                     this.Hide();
                     var f = new MainForm();
-                    f.SetUserName(userDB.GetUser(userCollection, txtUserName.Text.ToUpper()).UserName);
+                    f.SetUser(userDB.GetUser(userCollection, txtUserName.Text.ToUpper()));
                     f.Show();                    
                 }
                 else
