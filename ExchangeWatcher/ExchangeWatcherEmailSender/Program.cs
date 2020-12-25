@@ -16,9 +16,10 @@ namespace ExchangeWatcherEmailSender
             string exchangeRatesCollection = "ExchangeRatesList";
 
             string userDatabase = "Users";
+            string userCollection = "UsersList";
             string emailCollection = "EmailNotifications";
-            string userField = "UserName";
-            string emailField = "Email";
+            string userField = "UserNameUpper";
+
 
             MongoCRUD exchangeRatesDB = new MongoCRUD(exchangeRatesDatabase);
 
@@ -45,7 +46,6 @@ namespace ExchangeWatcherEmailSender
 
             MongoCRUD userDB = new MongoCRUD(userDatabase);
             var userList = userDB.LoadAllDistinctOneField<string>(emailCollection, userField);
-            var emailList = userDB.LoadAllDistinctOneField<string>(emailCollection, emailField);
 
             var notificationList = new List<Notification>();
 
@@ -55,28 +55,25 @@ namespace ExchangeWatcherEmailSender
             foreach (var user in userList)
             {
                 Console.WriteLine(user);
-                foreach (var email in emailList)
+
+                Console.WriteLine(userDB.GetUser(userCollection, user).Email);
+                
+                notificationList = userDB.LoadUserNotifications(emailCollection, user);
+                emailSender.ChangeReceiver(userDB.GetUser(userCollection, user).Email, userDB.GetUser(userCollection, user).UserName);
+                foreach (var notification in notificationList)
                 {
-                    Console.WriteLine(email);
-                    if(userDB.DoesUserEmailComboExist(emailCollection, user, email))
+                    var currencyChange = mrChangeList.Find(c => c.Currency == notification.Currency).MRChange;
+                    if (currencyChange >= notification.PercentageChange)
                     {
-                        notificationList = userDB.LoadUserEmailCombo(emailCollection, user, email);
-                        emailSender.ChangeReceiver(email, user);
-                        foreach(var notification in notificationList)
-                        {
-                            var currencyChange = mrChangeList.Find(c => c.Currency == notification.Currency).MRChange;
-                            if (currencyChange >= notification.PercentageChange)
-                            {
-                                Console.WriteLine(notification.Currency + ": " + notification.PercentageChange.ToString());
-                                emailSender.AddWatchedCurrency(notification.Currency, currencyChange);
-                            }
-                        }
-                        Console.WriteLine(emailSender.gettext());
-                        emailSender.SendEmail();
-                        emailSender.ClearWatchedCurrencies();
-                        notificationList.Clear();
+                        Console.WriteLine(notification.Currency + ": " + notification.PercentageChange.ToString());
+                        emailSender.AddWatchedCurrency(notification.Currency, currencyChange);
                     }
                 }
+                Console.WriteLine(emailSender.gettext());
+                emailSender.SendEmail();
+                emailSender.ClearWatchedCurrencies();
+                notificationList.Clear();
+                
             }
             
 

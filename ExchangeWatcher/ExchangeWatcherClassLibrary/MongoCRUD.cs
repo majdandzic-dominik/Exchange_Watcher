@@ -147,24 +147,11 @@ namespace ExchangeWatcherClassLibrary
         }
 
 
-        public bool DoesUserEmailComboExist(string table, string userName, string email)
-        {
-            var collection = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("Email", email)
-                & Builders<Notification>.Filter.Eq("UserName", userName);
 
-            if (collection.Find(filter).ToList().Count != 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public List<Notification> LoadUserEmailCombo(string table, string userName, string email)
+        public List<Notification> LoadUserNotifications(string table, string userNameUpper)
         {
             var colletction = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("Email", email)
-                & Builders<Notification>.Filter.Eq("UserName", userName);
+            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", userNameUpper);
 
             return colletction.Find(filter).ToList();
         }
