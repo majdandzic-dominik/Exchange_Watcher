@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Net;
 using Newtonsoft.Json;
 using ExchangeWatcherClassLibrary;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace ExchangeWatcher
 {
@@ -28,12 +30,16 @@ namespace ExchangeWatcher
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            cboCurrency.SelectedIndex = 0;
+
             exchangeRatesDB = new MongoCRUD(exchangeRatesDatabase);
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
             List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(exchangeRatesCollection, today);
 
             dgvExchangeRates.AutoGenerateColumns = false;
             dgvExchangeRates.DataSource = exchangeRatesList;
+
+            PopulateChart();
 
 
 
@@ -58,6 +64,39 @@ namespace ExchangeWatcher
             
         }
 
+
+        public void PopulateChart()
+        {
+            cartesianChart1.Series.Clear();
+            string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            string beforeDate = DateTime.UtcNow.AddDays(-7).ToString("yyyy-MM-dd");
+            List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordsInDateRange<ExchangeRate>(exchangeRatesCollection, today, beforeDate, cboCurrency.Text);
+
+            List<double> middleRateValues = new List<double>();
+            List<string> dateValues = new List<string>();
+            foreach (var v in exchangeRatesList)
+            {
+                middleRateValues.Add(Convert.ToDouble(v.MiddleRate));
+                dateValues.Add(v.Date);
+            }
+
+            Func<double, string> formatFunc = (x) => string.Format("{0:0.0000}", x);
+            cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+            {
+                Title = "Date",
+                Labels = dateValues
+            });
+            cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
+            {
+                Title = "Middle Rate [HRK]",
+                //LabelFormatter = value => value.ToString("C"),
+                LabelFormatter = formatFunc
+            }); ;
+            cartesianChart1.LegendLocation = LiveCharts.LegendLocation.Top;
+            SeriesCollection series = new SeriesCollection();
+            series.Add(new LineSeries() { Title = "middle rate", Values = new ChartValues<double>(middleRateValues) });
+            cartesianChart1.Series = series;
+        }
        
 
         public void SetUser(User user)
@@ -99,6 +138,11 @@ namespace ExchangeWatcher
             var f = new MainForm();
             f.SetUser(new User());
             f.Show();
+        }
+
+        private void cboCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //PopulateChart();
         }
     }
 }

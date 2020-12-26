@@ -30,6 +30,7 @@ namespace ExchangeWatcher
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSignOut = new System.Windows.Forms.Button();
             this.btnNotificationSettings = new System.Windows.Forms.Button();
             this.lblLoggedInAs = new System.Windows.Forms.Label();
             this.lblSignUp = new System.Windows.Forms.Label();
@@ -39,7 +40,8 @@ namespace ExchangeWatcher
             this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MiddleRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.btnSignOut = new System.Windows.Forms.Button();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.cboCurrency = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExchangeRates)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +49,8 @@ namespace ExchangeWatcher
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.panel1.Controls.Add(this.cboCurrency);
+            this.panel1.Controls.Add(this.cartesianChart1);
             this.panel1.Controls.Add(this.btnSignOut);
             this.panel1.Controls.Add(this.btnNotificationSettings);
             this.panel1.Controls.Add(this.lblLoggedInAs);
@@ -58,8 +62,22 @@ namespace ExchangeWatcher
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(700, 591);
+            this.panel1.Size = new System.Drawing.Size(916, 591);
             this.panel1.TabIndex = 2;
+            // 
+            // btnSignOut
+            // 
+            this.btnSignOut.BackColor = System.Drawing.Color.White;
+            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnSignOut.Location = new System.Drawing.Point(124, 545);
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Size = new System.Drawing.Size(88, 34);
+            this.btnSignOut.TabIndex = 11;
+            this.btnSignOut.Text = "Sign out";
+            this.btnSignOut.UseVisualStyleBackColor = false;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
             // 
             // btnNotificationSettings
             // 
@@ -170,25 +188,43 @@ namespace ExchangeWatcher
             this.lblUserName.TabIndex = 2;
             this.lblUserName.Text = "user";
             // 
-            // btnSignOut
+            // cartesianChart1
             // 
-            this.btnSignOut.BackColor = System.Drawing.Color.White;
-            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnSignOut.Location = new System.Drawing.Point(124, 545);
-            this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Size = new System.Drawing.Size(88, 34);
-            this.btnSignOut.TabIndex = 11;
-            this.btnSignOut.Text = "Sign out";
-            this.btnSignOut.UseVisualStyleBackColor = false;
-            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            this.cartesianChart1.Location = new System.Drawing.Point(341, 39);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(521, 335);
+            this.cartesianChart1.TabIndex = 12;
+            this.cartesianChart1.Text = "cartesianChart1";
+            // 
+            // cboCurrency
+            // 
+            this.cboCurrency.FormattingEnabled = true;
+            this.cboCurrency.Items.AddRange(new object[] {
+            "AUD",
+            "CAD",
+            "CZK",
+            "DKK",
+            "HUF",
+            "JPY",
+            "NOK",
+            "SEK",
+            "CHF",
+            "GBP",
+            "USD",
+            "BAM",
+            "EUR",
+            "PLN"});
+            this.cboCurrency.Location = new System.Drawing.Point(514, 413);
+            this.cboCurrency.Name = "cboCurrency";
+            this.cboCurrency.Size = new System.Drawing.Size(121, 25);
+            this.cboCurrency.TabIndex = 13;
+            this.cboCurrency.SelectedIndexChanged += new System.EventHandler(this.cboCurrency_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 591);
+            this.ClientSize = new System.Drawing.Size(916, 591);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -218,6 +254,8 @@ namespace ExchangeWatcher
         private System.Windows.Forms.Label lblLoggedInAs;
         private System.Windows.Forms.Button btnNotificationSettings;
         private System.Windows.Forms.Button btnSignOut;
+        private System.Windows.Forms.ComboBox cboCurrency;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
     }
 }
 

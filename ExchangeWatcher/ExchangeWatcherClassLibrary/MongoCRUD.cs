@@ -177,5 +177,14 @@ namespace ExchangeWatcherClassLibrary
             return collection.Distinct<T>(field, new BsonDocument()).ToList();
         }
 
+
+        public List<T> LoadRecordsInDateRange<T>(string table, string dateBegin, string dateEnd, string currency)
+        {
+            var collection = db.GetCollection<T>(table);
+            var filter = Builders<T>.Filter.Lte("Date", dateBegin) & Builders<T>.Filter.Gte("Date", dateEnd) & Builders<T>.Filter.Eq("Currency", currency);
+
+            return collection.Find(filter).ToList();
+        }
+
     }
 }
