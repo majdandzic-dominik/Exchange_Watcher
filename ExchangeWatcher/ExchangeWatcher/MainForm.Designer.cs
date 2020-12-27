@@ -30,6 +30,8 @@ namespace ExchangeWatcher
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboCurrency = new System.Windows.Forms.ComboBox();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnNotificationSettings = new System.Windows.Forms.Button();
             this.lblLoggedInAs = new System.Windows.Forms.Label();
@@ -40,8 +42,7 @@ namespace ExchangeWatcher
             this.Currency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MiddleRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
-            this.cboCurrency = new System.Windows.Forms.ComboBox();
+            this.cboDateSpan = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExchangeRates)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +50,7 @@ namespace ExchangeWatcher
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.panel1.Controls.Add(this.cboDateSpan);
             this.panel1.Controls.Add(this.cboCurrency);
             this.panel1.Controls.Add(this.cartesianChart1);
             this.panel1.Controls.Add(this.btnSignOut);
@@ -64,6 +66,40 @@ namespace ExchangeWatcher
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(916, 591);
             this.panel1.TabIndex = 2;
+            // 
+            // cboCurrency
+            // 
+            this.cboCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCurrency.FormattingEnabled = true;
+            this.cboCurrency.Items.AddRange(new object[] {
+            "AUD",
+            "BAM",
+            "CAD",
+            "CHF",
+            "CZK",
+            "DKK",
+            "EUR",
+            "GBP",
+            "HUF",
+            "JPY",
+            "NOK",
+            "PLN",
+            "SEK",
+            "USD"});
+            this.cboCurrency.Location = new System.Drawing.Point(432, 410);
+            this.cboCurrency.Name = "cboCurrency";
+            this.cboCurrency.Size = new System.Drawing.Size(121, 25);
+            this.cboCurrency.Sorted = true;
+            this.cboCurrency.TabIndex = 13;
+            this.cboCurrency.SelectionChangeCommitted += new System.EventHandler(this.cboCurrency_SelectionChangeCommitted);
+            // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Location = new System.Drawing.Point(341, 39);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(521, 335);
+            this.cartesianChart1.TabIndex = 12;
+            this.cartesianChart1.Text = "cartesianChart1";
             // 
             // btnSignOut
             // 
@@ -188,37 +224,19 @@ namespace ExchangeWatcher
             this.lblUserName.TabIndex = 2;
             this.lblUserName.Text = "user";
             // 
-            // cartesianChart1
+            // cboDateSpan
             // 
-            this.cartesianChart1.Location = new System.Drawing.Point(341, 39);
-            this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(521, 335);
-            this.cartesianChart1.TabIndex = 12;
-            this.cartesianChart1.Text = "cartesianChart1";
-            // 
-            // cboCurrency
-            // 
-            this.cboCurrency.FormattingEnabled = true;
-            this.cboCurrency.Items.AddRange(new object[] {
-            "AUD",
-            "CAD",
-            "CZK",
-            "DKK",
-            "HUF",
-            "JPY",
-            "NOK",
-            "SEK",
-            "CHF",
-            "GBP",
-            "USD",
-            "BAM",
-            "EUR",
-            "PLN"});
-            this.cboCurrency.Location = new System.Drawing.Point(514, 413);
-            this.cboCurrency.Name = "cboCurrency";
-            this.cboCurrency.Size = new System.Drawing.Size(121, 25);
-            this.cboCurrency.TabIndex = 13;
-            this.cboCurrency.SelectedIndexChanged += new System.EventHandler(this.cboCurrency_SelectedIndexChanged);
+            this.cboDateSpan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDateSpan.FormattingEnabled = true;
+            this.cboDateSpan.Items.AddRange(new object[] {
+            "Past week",
+            "Past month",
+            "Past year"});
+            this.cboDateSpan.Location = new System.Drawing.Point(588, 409);
+            this.cboDateSpan.Name = "cboDateSpan";
+            this.cboDateSpan.Size = new System.Drawing.Size(121, 25);
+            this.cboDateSpan.TabIndex = 14;
+            this.cboDateSpan.SelectionChangeCommitted += new System.EventHandler(this.cboDateSpan_SelectionChangeCommitted);
             // 
             // MainForm
             // 
@@ -256,6 +274,7 @@ namespace ExchangeWatcher
         private System.Windows.Forms.Button btnSignOut;
         private System.Windows.Forms.ComboBox cboCurrency;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private System.Windows.Forms.ComboBox cboDateSpan;
     }
 }
 

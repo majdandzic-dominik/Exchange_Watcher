@@ -198,23 +198,24 @@ namespace ExchangeWatcher
             this.cboCurrency.FormattingEnabled = true;
             this.cboCurrency.Items.AddRange(new object[] {
             "AUD",
+            "BAM",
             "CAD",
+            "CHF",
             "CZK",
             "DKK",
+            "EUR",
+            "GBP",
             "HUF",
             "JPY",
             "NOK",
+            "PLN",
             "SEK",
-            "CHF",
-            "GBP",
-            "USD",
-            "BAM",
-            "EUR",
-            "PLN"});
+            "USD"});
             this.cboCurrency.Location = new System.Drawing.Point(122, 4);
             this.cboCurrency.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboCurrency.Name = "cboCurrency";
             this.cboCurrency.Size = new System.Drawing.Size(140, 29);
+            this.cboCurrency.Sorted = true;
             this.cboCurrency.TabIndex = 1;
             // 
             // dgvNotifications

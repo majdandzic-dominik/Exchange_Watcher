@@ -31,6 +31,7 @@ namespace ExchangeWatcher
         private void MainForm_Load(object sender, EventArgs e)
         {
             cboCurrency.SelectedIndex = 0;
+            cboDateSpan.SelectedIndex = 0;
 
             exchangeRatesDB = new MongoCRUD(exchangeRatesDatabase);
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
@@ -68,15 +69,31 @@ namespace ExchangeWatcher
         public void PopulateChart()
         {
             cartesianChart1.Series.Clear();
+            cartesianChart1.AxisX.Clear();
+            cartesianChart1.AxisY.Clear();
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            string beforeDate = DateTime.UtcNow.AddDays(-7).ToString("yyyy-MM-dd");
+            string beforeDate;
+            if (cboDateSpan.SelectedIndex == 0)
+            {
+                beforeDate = DateTime.UtcNow.AddDays(-7).ToString("yyyy-MM-dd");
+            }
+            else if (cboDateSpan.SelectedIndex == 1)
+            {
+                beforeDate = DateTime.UtcNow.AddDays(-30).ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                beforeDate = DateTime.UtcNow.AddDays(-365).ToString("yyyy-MM-dd");
+            }
+
             List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordsInDateRange<ExchangeRate>(exchangeRatesCollection, today, beforeDate, cboCurrency.Text);
+            
 
             List<double> middleRateValues = new List<double>();
             List<string> dateValues = new List<string>();
             foreach (var v in exchangeRatesList)
             {
-                middleRateValues.Add(Convert.ToDouble(v.MiddleRate));
+                middleRateValues.Add(Convert.ToDouble(v.MiddleRate) * Convert.ToDouble(v.Unit));
                 dateValues.Add(v.Date);
             }
 
@@ -140,9 +157,15 @@ namespace ExchangeWatcher
             f.Show();
         }
 
-        private void cboCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        
+        private void cboCurrency_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //PopulateChart();
+            PopulateChart();
+        }
+
+        private void cboDateSpan_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            PopulateChart();
         }
     }
 }
