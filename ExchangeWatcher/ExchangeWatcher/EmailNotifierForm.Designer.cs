@@ -63,7 +63,7 @@ namespace ExchangeWatcher
             this.panelBackground.Location = new System.Drawing.Point(10, 12);
             this.panelBackground.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelBackground.Name = "panelBackground";
-            this.panelBackground.Size = new System.Drawing.Size(647, 236);
+            this.panelBackground.Size = new System.Drawing.Size(647, 199);
             this.panelBackground.TabIndex = 0;
             // 
             // btnUpdate
@@ -72,7 +72,7 @@ namespace ExchangeWatcher
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnUpdate.Location = new System.Drawing.Point(134, 107);
+            this.btnUpdate.Location = new System.Drawing.Point(131, 107);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(88, 34);
             this.btnUpdate.TabIndex = 12;
@@ -84,7 +84,7 @@ namespace ExchangeWatcher
             // 
             this.lblErrorMsg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMsg.Location = new System.Drawing.Point(30, 144);
+            this.lblErrorMsg.Location = new System.Drawing.Point(29, 144);
             this.lblErrorMsg.Name = "lblErrorMsg";
             this.lblErrorMsg.Size = new System.Drawing.Size(293, 51);
             this.lblErrorMsg.TabIndex = 11;
@@ -97,7 +97,7 @@ namespace ExchangeWatcher
             this.lblExit.AutoSize = true;
             this.lblExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExit.ForeColor = System.Drawing.Color.White;
-            this.lblExit.Location = new System.Drawing.Point(5, 205);
+            this.lblExit.Location = new System.Drawing.Point(5, 5);
             this.lblExit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblExit.Name = "lblExit";
             this.lblExit.Size = new System.Drawing.Size(78, 21);
@@ -111,7 +111,7 @@ namespace ExchangeWatcher
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnDelete.Location = new System.Drawing.Point(235, 107);
+            this.btnDelete.Location = new System.Drawing.Point(232, 107);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 34);
             this.btnDelete.TabIndex = 9;
@@ -125,7 +125,7 @@ namespace ExchangeWatcher
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnInsert.Location = new System.Drawing.Point(33, 107);
+            this.btnInsert.Location = new System.Drawing.Point(30, 107);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(88, 34);
             this.btnInsert.TabIndex = 8;
@@ -144,7 +144,7 @@ namespace ExchangeWatcher
             0,
             0,
             131072});
-            this.numChange.Location = new System.Drawing.Point(140, 56);
+            this.numChange.Location = new System.Drawing.Point(140, 73);
             this.numChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.numChange.Maximum = new decimal(new int[] {
             1000,
@@ -170,7 +170,7 @@ namespace ExchangeWatcher
             this.lblChange.AutoSize = true;
             this.lblChange.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChange.ForeColor = System.Drawing.Color.White;
-            this.lblChange.Location = new System.Drawing.Point(29, 58);
+            this.lblChange.Location = new System.Drawing.Point(29, 75);
             this.lblChange.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblChange.Name = "lblChange";
             this.lblChange.Size = new System.Drawing.Size(103, 21);
@@ -182,7 +182,7 @@ namespace ExchangeWatcher
             this.lblCurrency.AutoSize = true;
             this.lblCurrency.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrency.ForeColor = System.Drawing.Color.White;
-            this.lblCurrency.Location = new System.Drawing.Point(29, 7);
+            this.lblCurrency.Location = new System.Drawing.Point(47, 39);
             this.lblCurrency.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCurrency.Name = "lblCurrency";
             this.lblCurrency.Size = new System.Drawing.Size(85, 21);
@@ -211,7 +211,7 @@ namespace ExchangeWatcher
             "PLN",
             "SEK",
             "USD"});
-            this.cboCurrency.Location = new System.Drawing.Point(122, 4);
+            this.cboCurrency.Location = new System.Drawing.Point(140, 36);
             this.cboCurrency.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboCurrency.Name = "cboCurrency";
             this.cboCurrency.Size = new System.Drawing.Size(140, 29);
@@ -234,7 +234,8 @@ namespace ExchangeWatcher
             this.dgvNotifications.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvNotifications.Name = "dgvNotifications";
             this.dgvNotifications.ReadOnly = true;
-            this.dgvNotifications.Size = new System.Drawing.Size(284, 228);
+            this.dgvNotifications.RowHeadersVisible = false;
+            this.dgvNotifications.Size = new System.Drawing.Size(284, 191);
             this.dgvNotifications.TabIndex = 0;
             // 
             // Currency
@@ -255,7 +256,7 @@ namespace ExchangeWatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 259);
+            this.ClientSize = new System.Drawing.Size(668, 222);
             this.Controls.Add(this.panelBackground);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

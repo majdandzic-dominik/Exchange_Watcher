@@ -30,6 +30,7 @@ namespace ExchangeWatcher
             userDB = new MongoCRUD(userDatabase);
             dgvNotifications.AutoGenerateColumns = false;
             dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, loggedInUser.UserNameUpper);
+            dgvNotifications.ClearSelection();
 
             lblErrorMsg.MaximumSize = new Size(293, 51);
             lblErrorMsg.AutoSize = true;
@@ -57,7 +58,7 @@ namespace ExchangeWatcher
             {
                 userDB.InsertNotification(emailCollection, notification);
                 dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, loggedInUser.UserNameUpper);
-                lblErrorMsg.Visible = false;
+                lblErrorMsg.Visible = true;
             }
             else
             {

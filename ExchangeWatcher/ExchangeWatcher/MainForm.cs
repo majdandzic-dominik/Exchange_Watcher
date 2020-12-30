@@ -37,8 +37,14 @@ namespace ExchangeWatcher
             string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
             List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(exchangeRatesCollection, today);
 
+            foreach(var rate in exchangeRatesList)
+            {
+                rate.MiddleRate = (Convert.ToDouble(rate.MiddleRate) * Convert.ToDouble(rate.Unit)).ToString();
+            }
+
             dgvExchangeRates.AutoGenerateColumns = false;
             dgvExchangeRates.DataSource = exchangeRatesList;
+            dgvExchangeRates.ClearSelection();
 
             PopulateChart();
 
@@ -166,6 +172,11 @@ namespace ExchangeWatcher
         private void cboDateSpan_SelectionChangeCommitted(object sender, EventArgs e)
         {
             PopulateChart();
+        }
+
+        private void lblExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
