@@ -124,7 +124,7 @@ namespace ExchangeWatcher
 
         public void SetUser(User user)
         {
-            loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password);
+            loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password, user.Notifications);
             lblUserName.Text = loggedInUser.UserName;
         }
 

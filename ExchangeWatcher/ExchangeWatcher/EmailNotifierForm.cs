@@ -15,7 +15,7 @@ namespace ExchangeWatcher
     public partial class EmailNotifierForm : Form
     {
         private string userDatabase = "Users";
-        private string emailCollection = "EmailNotifications";
+        private string userCollection = "UsersList";
         private MongoCRUD userDB;
         private User loggedInUser = new User();
 
@@ -29,13 +29,17 @@ namespace ExchangeWatcher
             cboCurrency.SelectedIndex = 0;
             userDB = new MongoCRUD(userDatabase);
             dgvNotifications.AutoGenerateColumns = false;
-            dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, loggedInUser.UserNameUpper);
-            dgvNotifications.ClearSelection();
+
+            SetNotificationTable();
 
             lblErrorMsg.MaximumSize = new Size(293, 51);
             lblErrorMsg.AutoSize = true;
+        }
 
-
+        private void SetNotificationTable()
+        {
+            dgvNotifications.DataSource = userDB.GetUser(userCollection, loggedInUser.UserNameUpper).Notifications;
+            dgvNotifications.ClearSelection();
         }
         
         private void EmailNotifier_FormClosing(object sender, FormClosingEventArgs e)
@@ -53,12 +57,13 @@ namespace ExchangeWatcher
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            Notification notification = new Notification(loggedInUser.Email, loggedInUser.UserNameUpper, Convert.ToDouble(numChange.Value), cboCurrency.Text);
-            if(!userDB.DoesNotificationExist(emailCollection, notification))
+            Notification notification = new Notification(Convert.ToDouble(numChange.Value), cboCurrency.Text);
+            if(!userDB.DoesNotificationExist(userCollection, loggedInUser, notification))
             {
-                userDB.InsertNotification(emailCollection, notification);
-                dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, loggedInUser.UserNameUpper);
-                lblErrorMsg.Visible = true;
+                loggedInUser.addNotification(notification);            
+                userDB.UpdateUser(userCollection, loggedInUser);
+                SetNotificationTable();
+                lblErrorMsg.Visible = false;
             }
             else
             {
@@ -69,11 +74,12 @@ namespace ExchangeWatcher
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Notification notification = new Notification(loggedInUser.Email, loggedInUser.UserNameUpper, Convert.ToDouble(numChange.Value), cboCurrency.Text);
-            if (userDB.DoesNotificationExist(emailCollection, notification))
+            Notification notification = new Notification(Convert.ToDouble(numChange.Value), cboCurrency.Text);
+            if (userDB.DoesNotificationExist(userCollection, loggedInUser, notification))
             {
-                userDB.UpdateNotification(emailCollection, notification);
-                dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, loggedInUser.UserNameUpper);
+                loggedInUser.updateNotificationByCurrency(notification.Currency, notification.PercentageChange);
+                userDB.UpdateUser(userCollection, loggedInUser);
+                SetNotificationTable();
                 lblErrorMsg.Visible = false;
             }
             else
@@ -85,11 +91,12 @@ namespace ExchangeWatcher
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Notification notification = new Notification(loggedInUser.Email, loggedInUser.UserNameUpper, Convert.ToDouble(numChange.Value), cboCurrency.Text);
-            if (userDB.DoesNotificationExist(emailCollection, notification))
+            Notification notification = new Notification(Convert.ToDouble(numChange.Value), cboCurrency.Text);
+            if (userDB.DoesNotificationExist(userCollection, loggedInUser, notification))
             {
-                userDB.DeleteNotification(emailCollection, notification);
-                dgvNotifications.DataSource = userDB.LoadUsersNotifications<Notification>(emailCollection, loggedInUser.UserNameUpper);
+                loggedInUser.deleteNotificationByCurrency(notification.Currency);
+                userDB.UpdateUser(userCollection, loggedInUser);
+                SetNotificationTable();
                 lblErrorMsg.Visible = false;
             }
             else
@@ -101,7 +108,7 @@ namespace ExchangeWatcher
 
         public void SetUser(User user)
         {
-            this.loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password);
+            this.loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password, user.Notifications);
         }
     }
 }

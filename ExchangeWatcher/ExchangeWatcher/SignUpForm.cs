@@ -51,7 +51,7 @@ namespace ExchangeWatcher
                         lblErrorMsg.Visible = true;
                         if(lblErrorMsg.Text == "")
                         {
-                            User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text));
+                            User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text), new List<Notification>());
                             userDB.InsertData<User>(userCollection, user);
                             this.Hide();
                             var f = new MainForm();
