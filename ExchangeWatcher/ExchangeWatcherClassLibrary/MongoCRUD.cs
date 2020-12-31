@@ -116,13 +116,6 @@ namespace ExchangeWatcherClassLibrary
             collection.UpdateOne(filter, update);
         }
 
-        public List<Notification> LoadUserNotifications(string table, string userNameUpper)
-        {
-            var colletction = db.GetCollection<Notification>(table);
-            var filter = Builders<Notification>.Filter.Eq("UserNameUpper", userNameUpper);
-
-            return colletction.Find(filter).ToList();
-        }
 
 
         public void InsertRecordListByDate<T>(string table, List<T> records, string today)
@@ -136,13 +129,6 @@ namespace ExchangeWatcherClassLibrary
                 collection.InsertMany(records);
             }
 
-        }
-
-
-        public List<T> LoadAllDistinctOneField<T>(string table, string field)
-        {
-            var collection = db.GetCollection<T>(table);
-            return collection.Distinct<T>(field, new BsonDocument()).ToList();
         }
 
 

@@ -45,37 +45,69 @@ namespace ExchangeWatcherEmailSender
 
 
             MongoCRUD userDB = new MongoCRUD(userDatabase);
-            var userList = userDB.LoadAllDistinctOneField<string>(emailCollection, userField);
-
-            var notificationList = new List<Notification>();
+            var userList = userDB.LoadAllRecords<User>(userCollection);
 
             EmailSender emailSender = new EmailSender();
             emailSender.InitializeSmtpClient();
+            
 
-            foreach (var user in userList)
+            foreach(var user in userList)
             {
-                Console.WriteLine(user);
+                Console.WriteLine(user.UserName);
 
-                Console.WriteLine(userDB.GetUser(userCollection, user).Email);
-                
-                notificationList = userDB.LoadUserNotifications(emailCollection, user);
-                emailSender.ChangeReceiver(userDB.GetUser(userCollection, user).Email, userDB.GetUser(userCollection, user).UserName);
-                foreach (var notification in notificationList)
+                Console.WriteLine(user.Email);
+
+                emailSender.ChangeReceiver(user.Email, user.UserName);
+
+                foreach (var notification in user.Notifications)
                 {
                     var currencyChange = mrChangeList.Find(c => c.Currency == notification.Currency).MRChange;
                     if (currencyChange >= notification.PercentageChange)
                     {
                         Console.WriteLine(notification.Currency + ": " + notification.PercentageChange.ToString());
                         emailSender.AddWatchedCurrency(notification.Currency, currencyChange);
-                    }
+                    }                    
                 }
                 Console.WriteLine(emailSender.gettext());
                 emailSender.SendEmail();
                 emailSender.ClearWatchedCurrencies();
-                notificationList.Clear();
-                
             }
-            
+
+
+
+
+
+            //var userList = userDB.LoadAllDistinctOneField<string>(emailCollection, userField);
+
+            //var notificationList = new List<Notification>();
+
+            //EmailSender emailSender = new EmailSender();
+            //emailSender.InitializeSmtpClient();
+
+            //foreach (var user in userList)
+            //{
+            //    Console.WriteLine(user);
+
+            //    Console.WriteLine(userDB.GetUser(userCollection, user).Email);
+
+            //    notificationList = userDB.LoadUserNotifications(emailCollection, user);
+            //    emailSender.ChangeReceiver(userDB.GetUser(userCollection, user).Email, userDB.GetUser(userCollection, user).UserName);
+            //    foreach (var notification in notificationList)
+            //    {
+            //        var currencyChange = mrChangeList.Find(c => c.Currency == notification.Currency).MRChange;
+            //        if (currencyChange >= notification.PercentageChange)
+            //        {
+            //            Console.WriteLine(notification.Currency + ": " + notification.PercentageChange.ToString());
+            //            emailSender.AddWatchedCurrency(notification.Currency, currencyChange);
+            //        }
+            //    }
+            //    Console.WriteLine(emailSender.gettext());
+            //    emailSender.SendEmail();
+            //    emailSender.ClearWatchedCurrencies();
+            //    notificationList.Clear();
+
+            //}
+
 
 
 
