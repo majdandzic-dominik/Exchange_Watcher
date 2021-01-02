@@ -33,23 +33,11 @@ namespace ExchangeWatcher
             cboCurrency.SelectedIndex = 0;
             cboDateSpan.SelectedIndex = 0;
 
-            exchangeRatesDB = new MongoCRUD(exchangeRatesDatabase);
-            string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
-            List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(exchangeRatesCollection, today);
+            PopulateTable();
 
-            foreach(var rate in exchangeRatesList)
-            {
-                rate.MiddleRate = (Convert.ToDouble(rate.MiddleRate) * Convert.ToDouble(rate.Unit)).ToString();
-            }
+            PopulateGraph();
 
-            dgvExchangeRates.AutoGenerateColumns = false;
-            dgvExchangeRates.DataSource = exchangeRatesList;
-            dgvExchangeRates.ClearSelection();
-
-            PopulateChart();
-
-
-
+            //set visible items based on wether the user is logged in or not
             if(loggedInUser.UserName != "")
             {
                 lblUserName.Visible = true;
@@ -71,8 +59,22 @@ namespace ExchangeWatcher
             
         }
 
+        public void PopulateTable()
+        {
+            exchangeRatesDB = new MongoCRUD(exchangeRatesDatabase);
+            string today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+            List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordByDate<ExchangeRate>(exchangeRatesCollection, today);
 
-        public void PopulateChart()
+            foreach (var rate in exchangeRatesList)
+            {
+                rate.MiddleRate = (Convert.ToDouble(rate.MiddleRate) * Convert.ToDouble(rate.Unit)).ToString();
+            }
+
+            dgvExchangeRates.AutoGenerateColumns = false;
+            dgvExchangeRates.DataSource = exchangeRatesList;
+            dgvExchangeRates.ClearSelection();
+        }
+        public void PopulateGraph()
         {
             cartesianChart1.Series.Clear();
             cartesianChart1.AxisX.Clear();
@@ -112,16 +114,16 @@ namespace ExchangeWatcher
             cartesianChart1.AxisY.Add(new LiveCharts.Wpf.Axis
             {
                 Title = "Middle Rate [HRK]",
-                //LabelFormatter = value => value.ToString("C"),
                 LabelFormatter = formatFunc
             }); ;
             cartesianChart1.LegendLocation = LiveCharts.LegendLocation.Top;
             SeriesCollection series = new SeriesCollection();
-            series.Add(new LineSeries() { Title = "middle rate", Values = new ChartValues<double>(middleRateValues) });
+            series.Add(new LineSeries() { Title = "Middle Rates", Values = new ChartValues<double>(middleRateValues) });
             cartesianChart1.Series = series;
         }
        
 
+        //set logged in user
         public void SetUser(User user)
         {
             loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password, user.Notifications);
@@ -166,12 +168,12 @@ namespace ExchangeWatcher
         
         private void cboCurrency_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            PopulateChart();
+            PopulateGraph();
         }
 
         private void cboDateSpan_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            PopulateChart();
+            PopulateGraph();
         }
 
         private void lblExit_Click(object sender, EventArgs e)

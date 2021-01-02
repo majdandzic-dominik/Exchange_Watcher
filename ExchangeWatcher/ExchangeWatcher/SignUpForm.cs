@@ -36,20 +36,19 @@ namespace ExchangeWatcher
             f.Show();
         }
 
-
         
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            if (IsValidEmail(txtEmail.Text) && txtUserName.Text != null && txtPassword.Text != null && txtConfirmPassword.Text != null)
+            if (IsValidEmail(txtEmail.Text))
             {
-                if(txtPassword.TextLength > 7 && txtUserName.TextLength > 3)
+                if(IsValidUserNameLength(txtUserName.Text) && IsValidPasswordLength(txtPassword.Text))
                 {
-                    if(txtPassword.Text == txtConfirmPassword.Text)
+                    if(DoesPasswordMatch(txtPassword.Text, txtConfirmPassword.Text))
                     {                        
                         lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text.ToUpper(), txtEmail.Text);
                         lblErrorMsg.Visible = true;
-                        if(lblErrorMsg.Text == "")
+                        if(lblErrorMsg.Text == "") //if there are no errors
                         {
                             User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text), new List<Notification>());
                             userDB.InsertData<User>(userCollection, user);
@@ -67,7 +66,7 @@ namespace ExchangeWatcher
                 }
                 else
                 {
-                    if(txtUserName.TextLength <= 3)
+                    if(IsValidUserNameLength(txtUserName.Text))
                     {
                         lblErrorMsg.Text = "User name has to be atleast 4 characters.";
                         lblErrorMsg.Visible = true;
@@ -85,6 +84,7 @@ namespace ExchangeWatcher
                 lblErrorMsg.Visible = true;
             }
         }
+                
 
         private bool IsValidEmail(string email)
         {
@@ -97,6 +97,20 @@ namespace ExchangeWatcher
             {
                 return false;
             }
+        }
+
+        private bool IsValidUserNameLength(string userName)
+        {
+            return userName.Length > 3;
+        }
+        private bool IsValidPasswordLength(string password)
+        {
+            return password.Length > 7;
+        }
+
+        private bool DoesPasswordMatch(string password, string confirmPassword)
+        {
+            return password == confirmPassword;
         }
 
         private string GeneratePasswordHash(string password)

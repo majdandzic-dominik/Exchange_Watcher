@@ -122,12 +122,13 @@ namespace ExchangeWatcherEmailSender
         }
 
 
-        public string gettext()
-        {
-            string a = "";
-            a += toEmail + "\r\n";
-            a += AutoSetMessageText();
-            return a;
-        }
+        //used for easier testing
+        //public string gettext()
+        //{
+        //    string a = "";
+        //    a += toEmail + "\r\n";
+        //    a += AutoSetMessageText();
+        //    return a;
+        //}
     }
 }

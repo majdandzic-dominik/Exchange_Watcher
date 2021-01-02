@@ -12,9 +12,7 @@ namespace ExchangeWatcherUpdater
     {
         static void Main(string[] args)
         {
-
             
-
             //get json file
             WebClient webClient = new WebClient();
             string exchangeRatesJSON = webClient.DownloadString("http://api.hnb.hr/tecajn/v2");
@@ -46,17 +44,9 @@ namespace ExchangeWatcherUpdater
                             )
                     );
             }
-
-
-           
+                       
             exchangeRatesDB.InsertRecordListByDate<ExchangeRate>(collection, ExchangeRatesList, today);
-
-
-            
-
-           
-
-
+                                    
         }
 
     }

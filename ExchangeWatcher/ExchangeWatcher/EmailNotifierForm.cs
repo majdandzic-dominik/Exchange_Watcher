@@ -55,6 +55,8 @@ namespace ExchangeWatcher
             f.Show();
         }
 
+
+        //insert, update and delete notifications
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Notification notification = new Notification(Convert.ToDouble(numChange.Value), cboCurrency.Text);
@@ -106,9 +108,17 @@ namespace ExchangeWatcher
             }
         }
 
+        //set current logged in user
         public void SetUser(User user)
         {
             this.loggedInUser = new User(user.UserName, user.UserNameUpper, user.Email, user.Password, user.Notifications);
+        }
+
+
+        //when row selected show change the value of currency
+        private void dgvNotifications_SelectionChanged(object sender, EventArgs e)
+        {
+            cboCurrency.SelectedItem = dgvNotifications.CurrentRow.Cells[0].Value.ToString();
         }
     }
 }

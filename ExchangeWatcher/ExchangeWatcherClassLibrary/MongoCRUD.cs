@@ -116,8 +116,7 @@ namespace ExchangeWatcherClassLibrary
             collection.UpdateOne(filter, update);
         }
 
-
-
+        //insert records if records with same date don't already exist
         public void InsertRecordListByDate<T>(string table, List<T> records, string today)
         {
             var collection = db.GetCollection<T>(table);
@@ -128,7 +127,6 @@ namespace ExchangeWatcherClassLibrary
             {
                 collection.InsertMany(records);
             }
-
         }
 
 

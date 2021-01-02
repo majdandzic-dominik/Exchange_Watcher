@@ -232,11 +232,14 @@ namespace ExchangeWatcher
             this.Change});
             this.dgvNotifications.Location = new System.Drawing.Point(351, 4);
             this.dgvNotifications.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvNotifications.MultiSelect = false;
             this.dgvNotifications.Name = "dgvNotifications";
             this.dgvNotifications.ReadOnly = true;
             this.dgvNotifications.RowHeadersVisible = false;
+            this.dgvNotifications.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvNotifications.Size = new System.Drawing.Size(284, 191);
             this.dgvNotifications.TabIndex = 0;
+            this.dgvNotifications.SelectionChanged += new System.EventHandler(this.dgvNotifications_SelectionChanged);
             // 
             // Currency
             // 
