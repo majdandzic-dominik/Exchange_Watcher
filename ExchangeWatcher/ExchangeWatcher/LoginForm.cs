@@ -58,7 +58,7 @@ namespace ExchangeWatcher
             }
         }
 
-        private bool DoesPasswordMatch(string hashedPassword, string password)
+        public bool DoesPasswordMatch(string hashedPassword, string password)
         {
             return BC.Verify(password, hashedPassword);
         }

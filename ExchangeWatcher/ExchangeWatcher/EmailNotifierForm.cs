@@ -115,7 +115,7 @@ namespace ExchangeWatcher
         }
 
 
-        //when row selected show change the value of currency
+        //when row selected, change the currency on the drop down list
         private void dgvNotifications_SelectionChanged(object sender, EventArgs e)
         {
             cboCurrency.SelectedItem = dgvNotifications.CurrentRow.Cells[0].Value.ToString();

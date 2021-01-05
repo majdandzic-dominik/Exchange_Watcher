@@ -32,7 +32,8 @@ namespace ExchangeWatcher
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSignOut = new System.Windows.Forms.Button();
+            this.lbllAppName = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTimePeriod = new System.Windows.Forms.Label();
             this.lblCurrency = new System.Windows.Forms.Label();
             this.lblGraphHeader = new System.Windows.Forms.Label();
@@ -48,15 +49,14 @@ namespace ExchangeWatcher
             this.btnLogIn = new System.Windows.Forms.Button();
             this.btnNotificationSettings = new System.Windows.Forms.Button();
             this.lblLoggedInAs = new System.Windows.Forms.Label();
+            this.btnSignOut = new System.Windows.Forms.Button();
             this.lblExit = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbllAppName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExchangeRates)).BeginInit();
             this.panelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,19 +84,27 @@ namespace ExchangeWatcher
             this.panel1.Size = new System.Drawing.Size(824, 464);
             this.panel1.TabIndex = 2;
             // 
-            // btnSignOut
+            // lbllAppName
             // 
-            this.btnSignOut.BackColor = System.Drawing.Color.White;
-            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignOut.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnSignOut.Location = new System.Drawing.Point(723, 434);
-            this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Size = new System.Drawing.Size(88, 26);
-            this.btnSignOut.TabIndex = 11;
-            this.btnSignOut.Text = "Sign out";
-            this.btnSignOut.UseVisualStyleBackColor = false;
-            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            this.lbllAppName.AutoSize = true;
+            this.lbllAppName.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbllAppName.ForeColor = System.Drawing.Color.White;
+            this.lbllAppName.Location = new System.Drawing.Point(25, 386);
+            this.lbllAppName.Name = "lbllAppName";
+            this.lbllAppName.Size = new System.Drawing.Size(145, 66);
+            this.lbllAppName.TabIndex = 19;
+            this.lbllAppName.Text = "Exchange\r\nWatcher";
+            this.lbllAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(176, 379);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
             // 
             // lblTimePeriod
             // 
@@ -248,7 +256,7 @@ namespace ExchangeWatcher
             this.lblSignUp.AutoSize = true;
             this.lblSignUp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignUp.ForeColor = System.Drawing.Color.White;
-            this.lblSignUp.Location = new System.Drawing.Point(656, 432);
+            this.lblSignUp.Location = new System.Drawing.Point(657, 426);
             this.lblSignUp.Name = "lblSignUp";
             this.lblSignUp.Size = new System.Drawing.Size(61, 20);
             this.lblSignUp.TabIndex = 8;
@@ -261,7 +269,7 @@ namespace ExchangeWatcher
             this.btnLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
-            this.btnLogIn.Location = new System.Drawing.Point(723, 425);
+            this.btnLogIn.Location = new System.Drawing.Point(724, 419);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(88, 34);
             this.btnLogIn.TabIndex = 5;
@@ -295,6 +303,20 @@ namespace ExchangeWatcher
             this.lblLoggedInAs.TabIndex = 9;
             this.lblLoggedInAs.Text = "Logged in as:";
             // 
+            // btnSignOut
+            // 
+            this.btnSignOut.BackColor = System.Drawing.Color.White;
+            this.btnSignOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignOut.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(74)))));
+            this.btnSignOut.Location = new System.Drawing.Point(723, 434);
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Size = new System.Drawing.Size(88, 26);
+            this.btnSignOut.TabIndex = 11;
+            this.btnSignOut.Text = "Sign out";
+            this.btnSignOut.UseVisualStyleBackColor = false;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            // 
             // lblExit
             // 
             this.lblExit.AutoSize = true;
@@ -325,28 +347,6 @@ namespace ExchangeWatcher
             this.bunifuDragControl1.TargetControl = this.panelHeader;
             this.bunifuDragControl1.Vertical = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(176, 379);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(95, 82);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbllAppName
-            // 
-            this.lbllAppName.AutoSize = true;
-            this.lbllAppName.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbllAppName.ForeColor = System.Drawing.Color.White;
-            this.lbllAppName.Location = new System.Drawing.Point(25, 386);
-            this.lbllAppName.Name = "lbllAppName";
-            this.lbllAppName.Size = new System.Drawing.Size(145, 66);
-            this.lbllAppName.TabIndex = 19;
-            this.lbllAppName.Text = "Exchange\r\nWatcher";
-            this.lbllAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -366,10 +366,10 @@ namespace ExchangeWatcher
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExchangeRates)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

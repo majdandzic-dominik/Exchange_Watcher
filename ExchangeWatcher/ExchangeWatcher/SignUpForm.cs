@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BC = BCrypt.Net.BCrypt;
 using ExchangeWatcherClassLibrary;
-
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace ExchangeWatcher
 {
@@ -42,33 +43,45 @@ namespace ExchangeWatcher
         {
             if (IsValidEmail(txtEmail.Text))
             {
+
                 if(IsValidUserNameLength(txtUserName.Text) && IsValidPasswordLength(txtPassword.Text))
                 {
-                    if(DoesPasswordMatch(txtPassword.Text, txtConfirmPassword.Text))
-                    {                        
-                        lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text.ToUpper(), txtEmail.Text);
-                        lblErrorMsg.Visible = true;
-                        if(lblErrorMsg.Text == "") //if there are no errors
+
+                    if (IsValidPasswordFormat(txtPassword.Text))
+                    { 
+
+                        if(DoesPasswordMatch(txtPassword.Text, txtConfirmPassword.Text))
+                        {                        
+                            lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text.ToUpper(), txtEmail.Text);
+                            lblErrorMsg.Visible = true;
+                            
+                            if(lblErrorMsg.Text == "") //if there are no errors
+                            {
+                                User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text), new List<Notification>());
+                                userDB.InsertData<User>(userCollection, user);
+                                this.Hide();
+                                var f = new MainForm();
+                                f.SetUser(user);
+                                f.Show();
+                            }
+                        }
+                        else
                         {
-                            User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text), new List<Notification>());
-                            userDB.InsertData<User>(userCollection, user);
-                            this.Hide();
-                            var f = new MainForm();
-                            f.SetUser(user);
-                            f.Show();
+                            lblErrorMsg.Text = "The passwords do not match";
+                            lblErrorMsg.Visible = true;
                         }
                     }
                     else
                     {
-                        lblErrorMsg.Text = "The passwords do not match";
+                        lblErrorMsg.Text = "Password cannot contain spaces";
                         lblErrorMsg.Visible = true;
                     }
                 }
                 else
                 {
-                    if(IsValidUserNameLength(txtUserName.Text))
+                    if(!IsValidUserNameLength(txtUserName.Text))
                     {
-                        lblErrorMsg.Text = "User name has to be atleast 4 characters.";
+                        lblErrorMsg.Text = "User name has to be atleast 4 characters";
                         lblErrorMsg.Visible = true;
                     }
                     else
@@ -86,37 +99,72 @@ namespace ExchangeWatcher
         }
                 
 
-        private bool IsValidEmail(string email)
+        public bool IsValidEmail(string email)
         {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
             try
             {
-                var addr = new MailAddress(email);
-                return addr.Address == email;
+                // Normalize the domain
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                // Examines the domain part of the email and normalizes it.
+                string DomainMapper(Match match)
+                {
+                    // Use IdnMapping class to convert Unicode domain names.
+                    var idn = new IdnMapping();
+
+                    // Pull out and process domain name (throws ArgumentException on invalid)
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
             }
-            catch
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch (ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
             {
                 return false;
             }
         }
 
-        private bool IsValidUserNameLength(string userName)
+        public bool IsValidUserNameLength(string userName)
         {
             return userName.Length > 3;
         }
-        private bool IsValidPasswordLength(string password)
+        public bool IsValidPasswordLength(string password)
         {
             return password.Length > 7;
         }
-
-        private bool DoesPasswordMatch(string password, string confirmPassword)
+        public bool IsValidPasswordFormat(string password)
+        {
+            return !password.Any(c => Char.IsWhiteSpace(c));
+        }
+        public bool DoesPasswordMatch(string password, string confirmPassword)
         {
             return password == confirmPassword;
         }
 
-        private string GeneratePasswordHash(string password)
+        public string GeneratePasswordHash(string password)
         {
             return BC.HashPassword(password, BC.GenerateSalt());
         }
+
 
         private void lblLogIn_Click(object sender, EventArgs e)
         {
