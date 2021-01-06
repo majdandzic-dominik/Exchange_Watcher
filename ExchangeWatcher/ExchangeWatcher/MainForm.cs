@@ -97,14 +97,37 @@ namespace ExchangeWatcher
             List<ExchangeRate> exchangeRatesList = exchangeRatesDB.LoadRecordsInDateRange<ExchangeRate>(exchangeRatesCollection, today, beforeDate, cboCurrency.Text);
             
 
-            List<double> middleRateValues = new List<double>();
+            var middleRateValues = GetMiddleRatesListFromExchangeRates(exchangeRatesList);
+            var dateValues = GetDateListFromExchangeRates(exchangeRatesList);
+
+            SetGraphValues(dateValues, middleRateValues);
+        }
+
+        public List<string> GetDateListFromExchangeRates(List<ExchangeRate> exchangeRatesList)
+        {
             List<string> dateValues = new List<string>();
+
             foreach (var v in exchangeRatesList)
             {
-                middleRateValues.Add(Convert.ToDouble(v.MiddleRate) * Convert.ToDouble(v.Unit));
                 dateValues.Add(v.Date);
             }
 
+            return dateValues;
+        }
+        public List<double> GetMiddleRatesListFromExchangeRates(List<ExchangeRate> exchangeRatesList)
+        {
+            List<double> middleRateValues = new List<double>();
+
+            foreach (var v in exchangeRatesList)
+            {
+                middleRateValues.Add(Convert.ToDouble(v.MiddleRate) * Convert.ToDouble(v.Unit));
+            }
+
+            return middleRateValues;
+        }
+
+        public void SetGraphValues(List<string> dateValues, List<double> middleRateValues)
+        {
             Func<double, string> formatFunc = (x) => string.Format("{0:0.0000}", x);
             cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
             {
@@ -118,10 +141,9 @@ namespace ExchangeWatcher
             }); ;
             cartesianChart1.LegendLocation = LiveCharts.LegendLocation.Top;
             SeriesCollection series = new SeriesCollection();
-            series.Add(new LineSeries() { Title = "Middle Rates", Values = new ChartValues<double>(middleRateValues) });
+            series.Add(new LineSeries() { Title = $"{cboCurrency.Text} middle rates", Values = new ChartValues<double>(middleRateValues) });
             cartesianChart1.Series = series;
         }
-       
 
         //set logged in user
         public void SetUser(User user)

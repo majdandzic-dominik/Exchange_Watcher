@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExchangeWatcherClassLibrary\ExchangeWatcherClassLibrary.csproj">
+      <Project>{432c6eea-faf5-4eaa-9ea9-a6d08abec132}</Project>
+      <Name>ExchangeWatcherClassLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExchangeWatcher\ExchangeWatcher.csproj">
       <Project>{80f66596-54df-42ba-9d71-135546632f1a}</Project>
       <Name>ExchangeWatcher</Name>
