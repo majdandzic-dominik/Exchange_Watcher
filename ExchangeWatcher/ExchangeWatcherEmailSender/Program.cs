@@ -17,8 +17,6 @@ namespace ExchangeWatcherEmailSender
 
             string userDatabase = "Users";
             string userCollection = "UsersList";
-            string emailCollection = "EmailNotifications";
-            string userField = "UserNameUpper";
 
 
             MongoCRUD exchangeRatesDB = new MongoCRUD(exchangeRatesDatabase);
@@ -64,9 +62,12 @@ namespace ExchangeWatcherEmailSender
                     }                    
                 }
                 //Console.WriteLine(emailSender.gettext());
-                emailSender.SendEmail();
+                //emailSender.SendEmail();
                 emailSender.ClearWatchedCurrencies();
             }
         }
+
+
+
     }
 }
