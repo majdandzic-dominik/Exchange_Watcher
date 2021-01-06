@@ -62,7 +62,7 @@ namespace ExchangeWatcherEmailSender
                     }                    
                 }
                 //Console.WriteLine(emailSender.gettext());
-                //emailSender.SendEmail();
+                emailSender.SendEmail();
                 emailSender.ClearWatchedCurrencies();
             }
         }
