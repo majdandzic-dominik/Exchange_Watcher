@@ -34,7 +34,7 @@ namespace ExchangeWatcherEmailSender
                                                     new { Currency = first.Currency, 
                                                         MRChange = Math.Abs(((Convert.ToDouble(first.MiddleRate) - Convert.ToDouble(second.MiddleRate)) / Convert.ToDouble(second.MiddleRate)) * 100) }).ToList();
 
-            
+
             MongoCRUD userDB = new MongoCRUD(userDatabase);
             var userList = userDB.LoadAllRecords<User>(userCollection);
 

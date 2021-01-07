@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeWatcherClassLibrary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeWatcher.UnitTests", "ExchangeWatcher.UnitTests\ExchangeWatcher.UnitTests.csproj", "{1BAEC756-BE6A-4856-8F6A-39DDA5B2EC83}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExchangeWatcherSetup", "ExchangeWatcherSetup\ExchangeWatcherSetup.vdproj", "{4106DBE9-CF7C-457E-A088-44DBC9BDB17F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{1BAEC756-BE6A-4856-8F6A-39DDA5B2EC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BAEC756-BE6A-4856-8F6A-39DDA5B2EC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BAEC756-BE6A-4856-8F6A-39DDA5B2EC83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4106DBE9-CF7C-457E-A088-44DBC9BDB17F}.Debug|Any CPU.ActiveCfg = Release
+		{4106DBE9-CF7C-457E-A088-44DBC9BDB17F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,6 @@
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\bin\Debug\netstandard2.0\ExchangeWatcherClassLibrary.deps.json
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\bin\Debug\netstandard2.0\ExchangeWatcherClassLibrary.dll
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\bin\Debug\netstandard2.0\ExchangeWatcherClassLibrary.pdb
-F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\obj\Debug\netstandard2.0\ExchangeWatcherClassLibrary.csprojAssemblyReference.cache
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\obj\Debug\netstandard2.0\ExchangeWatcherClassLibrary.AssemblyInfoInputs.cache
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\obj\Debug\netstandard2.0\ExchangeWatcherClassLibrary.AssemblyInfo.cs
 F:\Stipendija zadatak\Zadatak\ExchangeWatcher\ExchangeWatcherClassLibrary\obj\Debug\netstandard2.0\ExchangeWatcherClassLibrary.csproj.CoreCompileInputs.cache
