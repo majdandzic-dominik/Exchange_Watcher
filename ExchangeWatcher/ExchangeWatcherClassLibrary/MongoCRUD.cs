@@ -30,26 +30,6 @@ namespace ExchangeWatcherClassLibrary
             return collection.Find(_ => true).ToList();
         }
 
-        public string GetUserLogInErrorMsg<User>(string table, string userNameUpper, string email)
-        {
-            if (GetNumOfUsers<User>(table, userNameUpper) == 0 && GetNumOfEmails<User>(table, email) == 0)
-            {
-                return "";
-            }
-
-            else if (GetNumOfUsers<User>(table, userNameUpper) != 0 && GetNumOfEmails<User>(table, email) == 0)
-            {
-                return "User name already in use";
-            }
-
-            else if (GetNumOfUsers<User>(table, userNameUpper) == 0 && GetNumOfEmails<User>(table, email) != 0)
-            {
-                return "Email already in use";
-            }
-
-            return "Both user name and email are already in use";
-        }
-
         public int GetNumOfUsers<T>(string table, string userNameUpper)
         {
             var collection = db.GetCollection<T>(table);
