@@ -35,32 +35,42 @@ namespace ExchangeWatcher
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            if(userDB.GetNumOfUsers<User>(userCollection, txtUserName.Text.ToUpper()) > 0)
+            if(AreAllInputsValid(txtUserName.Text.ToUpper(), txtPassword.Text))
             {
-                if(DoesPasswordMatch(userDB.GetUserPasswordHash(userCollection, txtUserName.Text.ToUpper()), txtPassword.Text))
-                {
-                    lblErrorMsg.Text = "";
-                    this.Hide();
-                    var f = new MainForm();
-                    f.SetUser(userDB.GetUser(userCollection, txtUserName.Text.ToUpper()));
-                    f.Show();                    
-                }
-                else
-                {
-                    lblErrorMsg.Text = "Invalid password";
-                    lblErrorMsg.Visible = true;
-                }
+                this.Hide();
+                var f = new MainForm();
+                f.SetUser(userDB.GetUser(userCollection, txtUserName.Text.ToUpper()));
+                f.Show();
             }
             else
             {
-                lblErrorMsg.Text = "User does not exist";
+                lblErrorMsg.Text = GenerateErrorMessage(txtUserName.Text.ToUpper(), txtPassword.Text);
                 lblErrorMsg.Visible = true;
             }
+
         }
 
+        public bool AreAllInputsValid(string userNameUpper, string password)
+        {
+            return userDB.GetNumOfUsers<User>(userCollection, userNameUpper) > 0
+                && DoesPasswordMatch(userDB.GetUserPasswordHash(userCollection, userNameUpper), password);
+        }
         public bool DoesPasswordMatch(string hashedPassword, string password)
         {
             return BC.Verify(password, hashedPassword);
+        }
+
+        public string GenerateErrorMessage(string userNameUpper, string password)
+        {
+            if(!(userDB.GetNumOfUsers<User>(userCollection, userNameUpper) > 0))
+            {
+                return "User does not exist";
+            }
+            else if(!(DoesPasswordMatch(userDB.GetUserPasswordHash(userCollection, userNameUpper), password)))
+            {
+                return "Invalid password";
+            }
+            return "";
         }
 
         private void lblSignUp_Click(object sender, EventArgs e)
