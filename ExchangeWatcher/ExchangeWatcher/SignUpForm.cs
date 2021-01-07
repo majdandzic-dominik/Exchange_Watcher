@@ -40,64 +40,34 @@ namespace ExchangeWatcher
         
 
         private void btnSignUp_Click(object sender, EventArgs e)
-        {
-            if (IsValidEmail(txtEmail.Text))
+        {            
+            if (AreAllInputsValid(txtEmail.Text, txtUserName.Text, txtPassword.Text, txtConfirmPassword.Text))
             {
-
-                if(IsValidUserNameLength(txtUserName.Text) && IsValidPasswordLength(txtPassword.Text))
-                {
-
-                    if (IsValidPasswordFormat(txtPassword.Text))
-                    { 
-
-                        if(DoesPasswordMatch(txtPassword.Text, txtConfirmPassword.Text))
-                        {                        
-                            lblErrorMsg.Text = userDB.GetUserLogInErrorMsg<User>(userCollection, txtUserName.Text.ToUpper(), txtEmail.Text);
-                            lblErrorMsg.Visible = true;
-                            
-                            if(lblErrorMsg.Text == "") //if there are no errors
-                            {
-                                User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text), new List<Notification>());
-                                userDB.InsertData<User>(userCollection, user);
-                                this.Hide();
-                                var f = new MainForm();
-                                f.SetUser(user);
-                                f.Show();
-                            }
-                        }
-                        else
-                        {
-                            lblErrorMsg.Text = "The passwords do not match";
-                            lblErrorMsg.Visible = true;
-                        }
-                    }
-                    else
-                    {
-                        lblErrorMsg.Text = "Password cannot contain spaces";
-                        lblErrorMsg.Visible = true;
-                    }
-                }
-                else
-                {
-                    if(!IsValidUserNameLength(txtUserName.Text))
-                    {
-                        lblErrorMsg.Text = "User name has to be atleast 4 characters";
-                        lblErrorMsg.Visible = true;
-                    }
-                    else
-                    {
-                        lblErrorMsg.Text = "Password needs to be atlest 8 characters";
-                        lblErrorMsg.Visible = true;
-                    }
-                }
+                User user = new User(txtUserName.Text, txtUserName.Text.ToUpper(), txtEmail.Text, GeneratePasswordHash(txtPassword.Text), new List<Notification>());
+                userDB.InsertData<User>(userCollection, user);
+                this.Hide();
+                var f = new MainForm();
+                f.SetUser(user);
+                f.Show();
             }
             else
             {
-                lblErrorMsg.Text = "Invalid email format";
+                lblErrorMsg.Text = GetErrorMessage(txtEmail.Text, txtUserName.Text, txtPassword.Text, txtConfirmPassword.Text);
                 lblErrorMsg.Visible = true;
             }
+
         }
                 
+        public bool AreAllInputsValid(string email, string userName, string password, string confirmPassword)
+        {
+            return IsValidEmail(email)
+                && IsValidUserNameLength(userName)
+                && IsValidPasswordLength(password)
+                && IsValidPasswordFormat(password)
+                && DoesPasswordMatch(password, confirmPassword)
+                && userDB.GetNumOfUsers<User>(userCollection, userName.ToUpper()) == 0 
+                && userDB.GetNumOfEmails<User>(userCollection, email) == 0;
+        }
 
         public bool IsValidEmail(string email)
         {
@@ -159,6 +129,55 @@ namespace ExchangeWatcher
         {
             return password == confirmPassword;
         }
+
+        public string GetErrorMessage(string email, string userName, string password, string confirmPassword)
+        {
+            string userNameUpper = userName.ToUpper();
+
+            if(!IsValidEmail(email))
+            {
+                return "Invalid email format";
+            }
+
+            else if(!IsValidUserNameLength(userName))
+            {
+                return "User name has to be atleast 4 characters";
+            }
+
+            else if (!IsValidPasswordLength(password))
+            {
+                return "Password needs to be atlest 8 characters";
+            }
+
+            else if (!IsValidPasswordFormat(password))
+            {
+                return "Password cannot contain spaces";
+            }
+
+            else if(!DoesPasswordMatch(password, confirmPassword))
+            {
+                return "The passwords do not match";
+            }
+
+            else if (userDB.GetNumOfUsers<User>(userCollection, userNameUpper) != 0 && userDB.GetNumOfEmails<User>(userCollection, email) == 0)
+            {
+                return "User name already in use";
+            }
+
+            else if (userDB.GetNumOfUsers<User>(userCollection, userNameUpper) == 0 && userDB.GetNumOfEmails<User>(userCollection, email) != 0)
+            {
+                return "Email already in use";
+            }
+
+            else if (userDB.GetNumOfUsers<User>(userCollection, userNameUpper) != 0 && userDB.GetNumOfEmails<User>(userCollection, email) != 0)
+            {
+                return "Both user name and email are already in use";
+            }
+
+            return "";
+        }
+
+
 
         public string GeneratePasswordHash(string password)
         {

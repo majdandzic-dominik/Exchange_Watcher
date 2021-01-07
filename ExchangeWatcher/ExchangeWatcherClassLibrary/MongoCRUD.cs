@@ -66,7 +66,7 @@ namespace ExchangeWatcherClassLibrary
             return collection.Find(filter).ToList()[0];
         }
 
-        private int GetNumOfEmails<T>(string table, string email)
+        public int GetNumOfEmails<T>(string table, string email)
         {
             var collection = db.GetCollection<T>(table);
             var filterEmail = Builders<T>.Filter.Eq("Email", email);
